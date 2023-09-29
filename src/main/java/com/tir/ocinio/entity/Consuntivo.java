@@ -3,13 +3,13 @@ package com.tir.ocinio.entity;
 import java.time.LocalDateTime;
 
 public class Consuntivo {
-	
+
 	private long id;
 	private LocalDateTime orario_inizio;
 	private LocalDateTime orario_fine;
 	private String tipologia;
 	private Dipendente id_dipendente;
-	
+
 	public Consuntivo(LocalDateTime orario_inizio, LocalDateTime orario_fine, String tipologia,
 			Dipendente id_dipendente) {
 		super();
@@ -18,9 +18,9 @@ public class Consuntivo {
 		this.tipologia = tipologia;
 		this.id_dipendente = id_dipendente;
 	}
-	
+
 	public Consuntivo() {
-		
+
 	}
 
 	public long getId() {
@@ -68,7 +68,7 @@ public class Consuntivo {
 		return "Consuntivo [id=" + id + ", orario_inizio=" + orario_inizio + ", orario_fine=" + orario_fine
 				+ ", tipologia=" + tipologia + ", id_dipendente=" + id_dipendente + "]";
 	}
-	
-	
+
+
 
 }
