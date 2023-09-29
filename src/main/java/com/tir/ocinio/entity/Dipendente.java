@@ -16,7 +16,7 @@ public class Dipendente {
 	
 	private String telefono;
 	
-	private Tariffario id_tariffario;
+	private Ruolo id_ruolo;
 	
 	private byte registrato;
 	
@@ -26,7 +26,7 @@ public class Dipendente {
 	public Dipendente() {}
 
 	public Dipendente(long id, String nome, String cognome, String cf, String email, String password, String telefono,
-			Tariffario id_tariffario, byte registrato, byte attivo) {
+			Ruolo id_ruolo, byte registrato, byte attivo) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -34,7 +34,7 @@ public class Dipendente {
 		this.email = email;
 		this.password = password;
 		this.telefono = telefono;
-		this.id_tariffario = id_tariffario;
+		this.id_ruolo = id_ruolo;
 		this.registrato = registrato;
 		this.attivo = attivo;
 	}
@@ -95,12 +95,12 @@ public class Dipendente {
 		this.telefono = telefono;
 	}
 
-	public Tariffario getId_tariffario() {
-		return id_tariffario;
+	public Ruolo getId_tariffario() {
+		return id_ruolo;
 	}
 
-	public void setId_tariffario(Tariffario id_tariffario) {
-		this.id_tariffario = id_tariffario;
+	public void setId_tariffario(Ruolo id_ruolo) {
+		this.id_ruolo = id_ruolo;
 	}
 
 	public byte getRegistrato() {
@@ -122,7 +122,7 @@ public class Dipendente {
 	@Override
 	public String toString() {
 		return "Dipendente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", cf=" + cf + ", email=" + email
-				+ ", password=" + password + ", telefono=" + telefono + ", id_tariffario=" + id_tariffario
+				+ ", password=" + password + ", telefono=" + telefono + ", id_ruolo=" + id_ruolo
 				+ ", registrato=" + registrato + ", attivo=" + attivo + "]";
 	}
 	
