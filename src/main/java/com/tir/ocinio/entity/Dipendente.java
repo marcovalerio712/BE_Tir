@@ -2,7 +2,7 @@ package com.tir.ocinio.entity;
 
 public class Dipendente {
 
-	private Long id;
+	private long id;
 	
 	private String nome;
 	
@@ -16,7 +16,7 @@ public class Dipendente {
 	
 	private String telefono;
 	
-	private Long id_tariffario;
+	private Tariffario id_tariffario;
 	
 	private byte registrato;
 	
@@ -25,8 +25,8 @@ public class Dipendente {
 	
 	public Dipendente() {}
 
-	public Dipendente(Long id, String nome, String cognome, String cf, String email, String password, String telefono,
-			Long id_tariffario, byte registrato, byte attivo) {
+	public Dipendente(long id, String nome, String cognome, String cf, String email, String password, String telefono,
+			Tariffario id_tariffario, byte registrato, byte attivo) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -39,11 +39,11 @@ public class Dipendente {
 		this.attivo = attivo;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -95,11 +95,11 @@ public class Dipendente {
 		this.telefono = telefono;
 	}
 
-	public Long getId_tariffario() {
+	public Tariffario getId_tariffario() {
 		return id_tariffario;
 	}
 
-	public void setId_tariffario(Long id_tariffario) {
+	public void setId_tariffario(Tariffario id_tariffario) {
 		this.id_tariffario = id_tariffario;
 	}
 
