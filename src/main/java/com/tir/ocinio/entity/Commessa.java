@@ -12,11 +12,31 @@ public class Commessa {
 	private Date dataInizio;
 	private Date dataFine;
 	private Cliente Cliente;
+	private Boolean attivo;
 
+<<<<<<< HEAD
 	public Commessa(long id) {
 		this.id = id;
 	}
+=======
+
+	public Commessa(){}
+>>>>>>> GRUPPO-3
 	
+	public Commessa(Long id, String tipo, Long durata, String descrizione, Float importoContratto, Date dataInizio,
+			Date dataFine, com.tir.ocinio.entity.Cliente cliente, boolean attivo) {
+		super();
+		this.id = id;
+		this.tipo = tipo;
+		this.durata = durata;
+		this.descrizione = descrizione;
+		this.importoContratto = importoContratto;
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
+		Cliente = cliente;
+		this.attivo = attivo;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -81,5 +101,11 @@ public class Commessa {
 		Cliente = cliente;
 	}
 	
-	
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
+	}
 }
