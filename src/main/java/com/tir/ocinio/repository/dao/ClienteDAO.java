@@ -18,8 +18,9 @@ public class ClienteDAO implements DAO<Cliente>{
 	
 	@Override
 	public Cliente getById(Long id) {
-		
-		return null;
+		String query = ClienteQuery.oneCliente + id;
+		var cliente = template.queryForObject(query, new ClienteRowMapper());		
+		return cliente;
 	}
 
 	@Override
@@ -31,8 +32,9 @@ public class ClienteDAO implements DAO<Cliente>{
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		String query = ClienteQuery.countClienti;
+		var counter = template.queryForObject(query, Integer.class);
+		return counter;
 	}
 
 	@Override

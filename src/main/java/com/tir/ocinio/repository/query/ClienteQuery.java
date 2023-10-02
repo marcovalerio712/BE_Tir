@@ -8,6 +8,9 @@ public class ClienteQuery {
 	public static String oneCliente = allClienti + "where c.id = ";
 	
 	public static String countClienti = "select count(*) from clienti";
-	   
+	
+	//public static String updateCliente = "update clienti c set c.telefono =  ";
+	
+	
 
 }
