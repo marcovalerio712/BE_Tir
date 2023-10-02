@@ -22,8 +22,8 @@ public class Task {
 	}
 	
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setId(long l) {
+		this.id = l;
 	}
 	
 	
