@@ -9,6 +9,6 @@ public class CommessaQuery {
 
 	public static String oneCommessa = allCommesse + "and c.id = ";
 
-	public static String countCommessa = "select count(*) from dipendenti";
+	public static String countCommessa = "select count(*) from Commessa";
 
 }
