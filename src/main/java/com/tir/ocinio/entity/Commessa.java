@@ -14,14 +14,11 @@ public class Commessa {
 	private Cliente Cliente;
 	private Boolean attivo;
 
-<<<<<<< HEAD
 	public Commessa(long id) {
 		this.id = id;
 	}
-=======
 
 	public Commessa(){}
->>>>>>> GRUPPO-3
 	
 	public Commessa(Long id, String tipo, Long durata, String descrizione, Float importoContratto, Date dataInizio,
 			Date dataFine, com.tir.ocinio.entity.Cliente cliente, boolean attivo) {
