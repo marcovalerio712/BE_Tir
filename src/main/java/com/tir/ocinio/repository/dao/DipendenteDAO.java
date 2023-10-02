@@ -39,6 +39,26 @@ public class DipendenteDAO implements DAO<Dipendente>{
 		return counter;
 	}
 
+	@Override
+	public Dipendente insert(Dipendente t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Dipendente update(Dipendente t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+
 	
 	
 	

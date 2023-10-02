@@ -13,4 +13,5 @@ public class DipendenteQuery {
 	
 	public static String countDipendenti = "select count(*) from dipendenti";
 	
+	
 }

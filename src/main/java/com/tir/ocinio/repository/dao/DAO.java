@@ -10,4 +10,11 @@ public interface DAO<T> {
 	
 	public int count();
 	
+	public T insert(T t);
+	
+	public void delete(Long id);
+	
+	public T update(T t);
+	
+	
 }
