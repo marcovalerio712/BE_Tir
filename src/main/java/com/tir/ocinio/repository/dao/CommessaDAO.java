@@ -35,4 +35,22 @@ public class CommessaDAO implements DAO<Commessa> {
 		return counter;
 	}
 
+	@Override
+	public Commessa insert(Commessa t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Commessa update(Commessa t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
