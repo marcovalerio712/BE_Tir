@@ -8,15 +8,15 @@ public class Consuntivo {
 	private LocalDateTime orario_inizio;
 	private LocalDateTime orario_fine;
 	private String tipologia;
-	private Dipendente id_dipendente;
+	private Dipendente dipendente;
 
 	public Consuntivo(LocalDateTime orario_inizio, LocalDateTime orario_fine, String tipologia,
-			Dipendente id_dipendente) {
+			Dipendente dipendente) {
 		super();
 		this.orario_inizio = orario_inizio;
 		this.orario_fine = orario_fine;
 		this.tipologia = tipologia;
-		this.id_dipendente = id_dipendente;
+		this.dipendente = dipendente;
 	}
 
 	public Consuntivo() {
@@ -59,18 +59,18 @@ public class Consuntivo {
 		this.tipologia = tipologia;
 	}
 
-	public Dipendente getId_dipendente() {
-		return id_dipendente;
+	public Dipendente getDipendente() {
+		return dipendente;
 	}
 
-	public void setId_dipendente(Dipendente id_dipendente) {
-		this.id_dipendente = id_dipendente;
+	public void setDipendente(Dipendente dipendente) {
+		this.dipendente = dipendente;
 	}
 
 	@Override
 	public String toString() {
 		return "Consuntivo [id=" + id + ", orario_inizio=" + orario_inizio + ", orario_fine=" + orario_fine
-				+ ", tipologia=" + tipologia + ", id_dipendente=" + id_dipendente + "]";
+				+ ", tipologia=" + tipologia + ", id_dipendente=" + dipendente + "]";
 	}
 
 
