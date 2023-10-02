@@ -14,9 +14,12 @@ public class Commessa {
 	private Cliente Cliente;
 	private Boolean attivo;
 
-	public Commessa() {}
+
+	public Commessa(){}
+	
 	public Commessa(Long id, String tipo, Long durata, String descrizione, Float importoContratto, Date dataInizio,
 			Date dataFine, com.tir.ocinio.entity.Cliente cliente, boolean attivo) {
+		super();
 		this.id = id;
 		this.tipo = tipo;
 		this.durata = durata;
@@ -91,12 +94,12 @@ public class Commessa {
 	public void setCliente(Cliente cliente) {
 		Cliente = cliente;
 	}
+	
 	public boolean isAttivo() {
 		return attivo;
 	}
+
 	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
 	}
-	
-	
 }

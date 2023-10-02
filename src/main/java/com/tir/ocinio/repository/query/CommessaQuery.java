@@ -9,6 +9,10 @@ public class CommessaQuery {
 
 	public static String oneCommessa = allCommesse + "and c.id = ";
 
+<<<<<<< Updated upstream
 	public static String countCommessa = "select count(*) from Commessa";
+=======
+	public static String countCommessa = "select count(*) from commessa";
+>>>>>>> Stashed changes
 
 }
