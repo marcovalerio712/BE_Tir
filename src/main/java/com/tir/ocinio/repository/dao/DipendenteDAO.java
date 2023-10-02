@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.tir.ocinio.entity.Dipendente;
@@ -18,6 +19,7 @@ public class DipendenteDAO implements DAO<Dipendente>{
 	
 	@Override
 	public Dipendente getById(Long id) {
+		
 		String query = DipendenteQuery.oneDipendente + id;
 		var dipendente = template.queryForObject(query, new DipendenteRowMapper());
 		return dipendente;
