@@ -6,7 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.tir.ocinio.entity.Dipendente;
 import com.tir.ocinio.repository.dao.DAO;
-import com.tir.ocinio.repository.dao.DipendenteDAO;
 
 @SpringBootTest
 class BeApplicationTests {
