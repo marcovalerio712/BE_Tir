@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.tir.ocinio.entity.Assegnazione;
+import com.tir.ocinio.repository.mapper.AssegnazioneRowMapper;
+import com.tir.ocinio.repository.query.AssegnazioneQuery;
 
 public class AssegnazioneDAO implements DAO<Assegnazione>{
 
@@ -23,24 +25,29 @@ public class AssegnazioneDAO implements DAO<Assegnazione>{
 		return null;
 	}
 	
-	public Assegnazione getAssById_Dip() {
-		return null;
-
+	public Assegnazione getAssById_Dip(Long id_dip) {
+		String query = AssegnazioneQuery.oneAssegnazioneByDip + id_dip;
+		var assegnazione = template.queryForObject(query, new AssegnazioneRowMapper());
+		return assegnazione;
 	}
 	
-	public Assegnazione getAssById_Com() {
-		return null;
+	public Assegnazione getAssById_Com(Long id_com) {
+		String query = AssegnazioneQuery.oneAssegnazioneByCom + id_com;
+		var assegnazione = template.queryForObject(query, new AssegnazioneRowMapper());
+		return assegnazione;
 	}
 
 	@Override
 	public List<Assegnazione> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = AssegnazioneQuery.allAssegnazioni;
+		var assegnazioni = template.query(query, new AssegnazioneRowMapper());
+		return assegnazioni;
 	}
 	
 	public List<Assegnazione> getAllAttive() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = AssegnazioneQuery.allAssegnazioniAttive;
+		var assegnazioni = template.query(query, new AssegnazioneRowMapper());
+		return assegnazioni;
 	}
 
 	@Override
@@ -63,7 +70,6 @@ public class AssegnazioneDAO implements DAO<Assegnazione>{
 
 	@Override
 	public Assegnazione update(Assegnazione t) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

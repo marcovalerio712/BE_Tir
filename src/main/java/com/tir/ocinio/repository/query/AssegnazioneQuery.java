@@ -10,4 +10,5 @@ public class AssegnazioneQuery {
 
 	public static String oneAssegnazioneByCom = allAssegnazioni + "WHERE a.id_commessa = ";
 	
+	
 }
