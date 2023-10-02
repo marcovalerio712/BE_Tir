@@ -3,12 +3,14 @@ package com.tir.ocinio.repository.dao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import com.tir.ocinio.entity.Commessa;
 import com.tir.ocinio.repository.mapper.CommessaRowMapper;
 import com.tir.ocinio.repository.query.CommessaQuery;
 
 
-
+@Repository
 public class CommessaDAO implements DAO<Commessa> {
 
 	@Autowired
