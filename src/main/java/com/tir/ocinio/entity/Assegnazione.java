@@ -8,7 +8,7 @@ public class Assegnazione {
 	
 	private Long competenza;
 	
-	private Long attivo;
+	private boolean attivo;
 
 	public Dipendente getDipendente() {
 		return dipendente;
@@ -34,11 +34,11 @@ public class Assegnazione {
 		this.competenza = competenza;
 	}
 
-	public Long getAttivo() {
+	public boolean isAttivo() {
 		return attivo;
 	}
 
-	public void setAttivo(Long attivo) {
+	public void setAttivo(boolean attivo) {
 		this.attivo = attivo;
 	}
 	
