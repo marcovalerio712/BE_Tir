@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tir.ocinio.entity.Dipendente;
 import com.tir.ocinio.repository.mapper.DipendenteRowMapper;
+import com.tir.ocinio.repository.query.DipendenteQuery;
 
 @Repository
 public class DipendenteDAO implements DAO<Dipendente>{
@@ -17,37 +18,21 @@ public class DipendenteDAO implements DAO<Dipendente>{
 	
 	@Override
 	public Dipendente getById(Long id) {
-		
-		
-		String query = "select d.id dip_id, d.nome dip_nome, d.cognome dip_cognome, "
-				+ "	d.cf dip_cf, d.email dip_email, d.password dip_password, d.telefono dip_telefono, "
-				+ "	d.registrato dip_registrato, d.attivo dip_attivo, r.id ruo_id, r.anzianita ruo_anzianita, "
-				+ "						r.compenso ruo_compenso "
-				+ "						from Dipendenti d, Ruoli r "
-				+ "						where d.id_ruolo = r.id(+) and d.id = " + id;
-		
+		String query = DipendenteQuery.oneDipendente + id;
 		var dipendente = template.queryForObject(query, new DipendenteRowMapper());
-		
 		return dipendente;
 	}
 
 	@Override
 	public List<Dipendente> getAll() {
-		
-		String query = "select d.id dip_id, d.nome dip_nome, d.cognome dip_cognome, "
-				+ "	d.cf dip_cf, d.email dip_email, d.password dip_password, d.telefono dip_telefono, "
-				+ "	d.registrato dip_registrato, d.attivo dip_attivo, r.id ruo_id, r.anzianita ruo_anzianita, "
-				+ "						r.compenso ruo_compenso "
-				+ "						from Dipendenti d, Ruoli r "
-				+ "						where d.id_ruolo = r.id(+)";
-		
+		String query = DipendenteQuery.allDipendenti;
 		var dipendenti = template.query(query, new DipendenteRowMapper());
 		return dipendenti;
 	}
 
 	@Override
 	public int count() {
-		String query = "select count(*) from dipendenti";
+		String query = DipendenteQuery.countDipendenti;
 		var counter = template.queryForObject(query, Integer.class);
 		return counter;
 	}
