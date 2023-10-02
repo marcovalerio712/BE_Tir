@@ -2,7 +2,7 @@ package com.tir.ocinio.entity;
 
 public class Ruolo{
 	private long id;
-	private int compenso;
+	private float compenso;
 	private String anzianita;
 
 	public Ruolo(int compenso, String anzianita) {
@@ -22,12 +22,12 @@ public class Ruolo{
 		this.id = id;
 	}
 
-	public int getCompenso() {
+	public float getCompenso() {
 		return compenso;
 	}
 
-	public void setCompenso(int compenso) {
-		this.compenso = compenso;
+	public void setCompenso(float f) {
+		this.compenso = f;
 	}
 
 	public String getAnzianita() {
