@@ -6,7 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.tir.ocinio.entity.Dipendente;
 import com.tir.ocinio.repository.dao.DAO;
-import com.tir.ocinio.repository.dao.DipendenteDAO;
 
 @SpringBootTest
 class BeApplicationTests {
@@ -17,11 +16,9 @@ class BeApplicationTests {
 	@Test
 	void contextLoads() {
 		
-		var federico = dao.getAll();
+		var federico = dao.getById(1L);
 		
-		for(var a: federico)
-			System.out.println(a);
-		
+		System.out.println(federico);
 		
 	}
 
