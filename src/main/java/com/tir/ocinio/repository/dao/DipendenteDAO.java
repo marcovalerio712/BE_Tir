@@ -21,7 +21,7 @@ public class DipendenteDAO implements DAO<Dipendente>{
 	@Override
 	public Dipendente getById(Long id) {
 		
-		String query = DipendenteQuery.oneDipendente + id;
+		String query = String.format(DipendenteQuery.oneDipendente, id);
 		var dipendente = template.queryForObject(query, new DipendenteRowMapper());
 		return dipendente;
 	}

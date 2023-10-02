@@ -19,7 +19,7 @@ public class ConsuntivoDAO implements DAO<Consuntivo>{
 	@Override
 	public Consuntivo getById(Long id) {
 	
-		String query = ConsuntivoQuery.oneConsuntivo + id;
+		String query = String.format(ConsuntivoQuery.oneConsuntivo, id);
 		var consuntivo = template.queryForObject(query, new ConsuntivoRowMapper());
 		
 		return consuntivo;

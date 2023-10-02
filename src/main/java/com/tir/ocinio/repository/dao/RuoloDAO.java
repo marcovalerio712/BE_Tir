@@ -20,7 +20,7 @@ public class RuoloDAO implements DAO<Ruolo>{
 	@Override
 	public Ruolo getById(Long id) {
 	
-		String query = RuoloQuery.oneRuolo + id;
+		String query = String.format(RuoloQuery.oneRuolo, id);
 		
 		var ruolo = template.queryForObject(query, new RuoloRowMapper()); 
 		

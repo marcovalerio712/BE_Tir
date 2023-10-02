@@ -28,13 +28,13 @@ public class AssegnazioneDAO implements DAO<Assegnazione>{
 	}
 	
 	public Assegnazione getAssById_Dip(Long id_dip) {
-		String query = AssegnazioneQuery.oneAssegnazioneByDip + id_dip;
+		String query = String.format(AssegnazioneQuery.oneAssegnazioneByDip, id_dip);
 		var assegnazione = template.queryForObject(query, new AssegnazioneRowMapper());
 		return assegnazione;
 	}
 	
 	public Assegnazione getAssById_Com(Long id_com) {
-		String query = AssegnazioneQuery.oneAssegnazioneByCom + id_com;
+		String query = String.format(AssegnazioneQuery.oneAssegnazioneByCom, id_com);
 		var assegnazione = template.queryForObject(query, new AssegnazioneRowMapper());
 		return assegnazione;
 	}

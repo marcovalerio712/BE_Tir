@@ -18,7 +18,7 @@ public class CommessaDAO implements DAO<Commessa> {
 
 	@Override
 	public Commessa getById(Long id) {
-		String query = CommessaQuery.oneCommessa + id;
+		String query = String.format(CommessaQuery.oneCommessa, id);
 		var commessa = template.queryForObject(query, new CommessaRowMapper());
 		return commessa;
 	}
