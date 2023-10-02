@@ -10,7 +10,10 @@ public class Cliente {
 	private String partitaIva;
 	
 	private String telefono;
-
+	
+	public Cliente(long id) {
+		this.id = id;
+	}
 	
 	public Long getId() {
 		return id;

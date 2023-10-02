@@ -22,6 +22,10 @@ public class Consuntivo {
 	public Consuntivo() {
 
 	}
+	
+	public Consuntivo(long id) {
+		this.id = id;
+	}
 
 	public long getId() {
 		return id;

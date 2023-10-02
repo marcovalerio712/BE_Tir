@@ -42,4 +42,6 @@ public class Assegnazione {
 		this.attivo = attivo;
 	}
 	
+	
+	
 }

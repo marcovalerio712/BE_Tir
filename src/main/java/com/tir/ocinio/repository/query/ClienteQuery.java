@@ -9,7 +9,7 @@ public class ClienteQuery {
 	
 	public static String countClienti = "select count(*) from clienti";
 	
-	//public static String updateCliente = "update clienti c set c.telefono =  ";
+	//public static String insertCliente = "execute F_INSERISCI_CLIENTE";
 	
 	
 

@@ -108,6 +108,10 @@ public class Task {
 		this.dipendente = dipendente;
 		this.commessa = commessa;
 	}
+	
+	public Task(long id) {
+		this.id = id;
+	}
 
 
 	@Override

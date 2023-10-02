@@ -37,6 +37,10 @@ public class Dipendente {
 		this.registrato = registrato;
 		this.attivo = attivo;
 	}
+	
+	public Dipendente(long id) {
+		this.id = id;
+	}
 
 	public long getId() {
 		return id;

@@ -13,6 +13,9 @@ public class Commessa {
 	private Date dataFine;
 	private Cliente Cliente;
 
+	public Commessa(long id) {
+		this.id = id;
+	}
 	
 	public Long getId() {
 		return id;
