@@ -21,5 +21,24 @@ class BeApplicationTests {
 		System.out.println(federico);
 		
 	}
+	
+	@Test
+	void testInsertDipendente() {
+		
+		var alessandro = new Dipendente();
+		
+		alessandro.setNome("Alessandro");
+		alessandro.setCognome("Marchionne");
+		alessandro.setCf("MRCLSN95P17H501N");
+		alessandro.setEmail("alessandro@gmail.com");
+		alessandro.setPassword("1234");
+		alessandro.setTelefono("3929839282");
+		
+		alessandro = dao.insert(alessandro);
+		
+		System.out.println(alessandro);
+		
+		
+	}
 
 }

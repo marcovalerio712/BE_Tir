@@ -18,7 +18,7 @@ public class ClienteDAO implements DAO<Cliente>{
 	
 	@Override
 	public Cliente getById(Long id) {
-		String query = ClienteQuery.oneCliente + id;
+		String query = String.format(ClienteQuery.oneCliente, id);   
 		var cliente = template.queryForObject(query, new ClienteRowMapper());		
 		return cliente;
 	}
