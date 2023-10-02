@@ -44,9 +44,14 @@ public class DipendenteDAO implements DAO<Dipendente>{
 	public Dipendente insert(Dipendente t) {
 		Dipendente newDipendente = null;
 		
-		var procedure = new SimpleJdbcCall(template).withProcedureName("GRUPPO_1.F_INSERISCI_DIPENDENTE");
+		var procedure = new SimpleJdbcCall(template).
+							withCatalogName("GRUPPO_1").
+							withFunctionName("F_INSERISCI_DIPENDENTE");
 		
+		var newId = procedure.executeFunction(Long.class, t.getNome(), t.getCognome(), t.getCf(), 
+												t.getEmail(), t.getPassword(), t.getTelefono());
 		
+		newDipendente = getById(newId);
 		
 		return newDipendente;
 	}
