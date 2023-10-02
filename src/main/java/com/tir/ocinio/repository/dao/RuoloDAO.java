@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.tir.ocinio.entity.Ruolo;
 import com.tir.ocinio.repository.mapper.RuoloRowMapper;
 import com.tir.ocinio.repository.query.RuoloQuery;
 
+@Repository
 public class RuoloDAO implements DAO<Ruolo>{
 
 	

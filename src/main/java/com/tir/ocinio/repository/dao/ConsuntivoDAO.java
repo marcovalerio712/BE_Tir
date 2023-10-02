@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.tir.ocinio.entity.Consuntivo;
 import com.tir.ocinio.repository.mapper.ConsuntivoRowMapper;
 import com.tir.ocinio.repository.query.ConsuntivoQuery;
 
+@Repository
 public class ConsuntivoDAO implements DAO<Consuntivo>{
 
 	@Autowired

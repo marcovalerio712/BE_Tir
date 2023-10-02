@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.tir.ocinio.entity.Assegnazione;
 import com.tir.ocinio.repository.mapper.AssegnazioneRowMapper;
 import com.tir.ocinio.repository.query.AssegnazioneQuery;
 
+@Repository
 public class AssegnazioneDAO implements DAO<Assegnazione>{
 
 	@Autowired
