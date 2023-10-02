@@ -11,6 +11,8 @@ public class Cliente {
 	
 	private String telefono;
 	
+	public Cliente() {}
+	
 	public Cliente(long id) {
 		this.id = id;
 	}
