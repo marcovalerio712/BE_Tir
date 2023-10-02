@@ -7,7 +7,7 @@ public class CommessaQuery {
 			+ "c.attivo com_attivo, cl.id cli_id, cl.nome cli_nome, "
 			+ "cl.p_iva cli_p_iva, cl.telefono cli_telefono " + "from Commessa c, Cliente cl " + "where c.id_ruolo = cl.id(+) ";
 
-	public static String oneCommessa = allCommesse + "and c.id = ";
+	public static String oneCommessa = allCommesse + "and c.id = %d";
 
 
 	public static String countCommessa = "select count(*) from Commessa";

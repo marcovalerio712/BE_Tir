@@ -6,9 +6,9 @@ public class AssegnazioneQuery {
 	
 	public static String allAssegnazioniAttive = "SELECT a.id_dipendente ass_id_dipendente, a.id_commessa ass_id_commesa, a.competenza ass_competenza, a.attivo ass_attivo FROM ASSEGNAZIONI a WHERE a.attivo = 1";
 	
-	public static String oneAssegnazioneByDip = allAssegnazioni + "WHERE a.id_dipendente = ";
+	public static String oneAssegnazioneByDip = allAssegnazioni + "WHERE a.id_dipendente = %d";
 
-	public static String oneAssegnazioneByCom = allAssegnazioni + "WHERE a.id_commessa = ";
+	public static String oneAssegnazioneByCom = allAssegnazioni + "WHERE a.id_commessa = %d";
 	
 	
 }

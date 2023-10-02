@@ -9,7 +9,7 @@ public class DipendenteQuery {
 									   + "from Dipendenti d, Ruoli r "
 									   + "where d.id_ruolo = r.id(+) ";
 	
-	public static String oneDipendente = allDipendenti + "and d.id = ";
+	public static String oneDipendente = allDipendenti + "and d.id = %d";
 	
 	public static String countDipendenti = "select count(*) from dipendenti";
 	

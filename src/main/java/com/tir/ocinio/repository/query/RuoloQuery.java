@@ -5,7 +5,7 @@ public class RuoloQuery {
 	public static String allRuoli = "select r.id ruo_id, r.compenso ruo_compenso, r.anzianita ruo_anzianita"
 									+ "from Ruoli r";
 	
-	public static String oneRuolo = allRuoli + "and r.id = ";
+	public static String oneRuolo = allRuoli + "and r.id = %d";
 	
 
 }

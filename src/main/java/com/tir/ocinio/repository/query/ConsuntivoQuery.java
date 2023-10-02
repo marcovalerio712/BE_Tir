@@ -8,5 +8,5 @@ public class ConsuntivoQuery {
 							+ "where c.id_dipendente = d.id";
 	  
 
-	public static String oneConsuntivo = allConsuntivi + "and c.id = ";
+	public static String oneConsuntivo = allConsuntivi + "and c.id = %d";
 }
