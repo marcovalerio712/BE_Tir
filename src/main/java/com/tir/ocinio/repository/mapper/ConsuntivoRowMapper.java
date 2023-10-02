@@ -26,7 +26,6 @@ public class ConsuntivoRowMapper implements RowMapper<Consuntivo>{
 		consuntivo.setTipologia(rs.getString("con_tipologia"));
 
 		var dipendente = new Dipendente(rs.getLong("dip_id"));
-		
 		consuntivo.setDipendente(dipendente);
 		
 		return consuntivo;
