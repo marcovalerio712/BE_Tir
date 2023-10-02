@@ -17,11 +17,9 @@ class BeApplicationTests {
 	@Test
 	void contextLoads() {
 		
-		var federico = dao.getAll();
+		var federico = dao.getById(1L);
 		
-		for(var a: federico)
-			System.out.println(a);
-		
+		System.out.println(federico);
 		
 	}
 
