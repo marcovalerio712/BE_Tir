@@ -12,7 +12,7 @@ public class Commessa {
 	private Date dataInizio;
 	private Date dataFine;
 	private Cliente Cliente;
-	private boolean attivo;
+	private Boolean attivo;
 
 	public Commessa() {}
 	public Commessa(Long id, String tipo, Long durata, String descrizione, Float importoContratto, Date dataInizio,
