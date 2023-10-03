@@ -52,9 +52,7 @@ public class DipendenteDAO implements DAO<Dipendente>{
 												t.getEmail(), t.getPassword(), t.getTelefono()).longValue();
 		
 		
-		newDipendente = getById(newId);
-		
-		return newDipendente;
+		return getById(newId);
 		
 	}
 

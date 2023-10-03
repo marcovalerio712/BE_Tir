@@ -36,7 +36,7 @@ public class DipendenteController {
 	}
 	
 	@PostMapping("")
-	public ResponseEntity<Dipendente> insertDipendente(@RequestBody Dipendente dip){
+	public ResponseEntity<Dipendente> registerDipendente(@RequestBody Dipendente dip){
 		dip = dipService.registerDipendente(dip);
 		return ResponseEntity.ok(dip);
 	}
