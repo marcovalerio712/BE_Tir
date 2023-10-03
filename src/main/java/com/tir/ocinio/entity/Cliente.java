@@ -1,7 +1,6 @@
 package com.tir.ocinio.entity;
 
 public class Cliente {
-
 	
 	private Long id;
 	
@@ -13,7 +12,7 @@ public class Cliente {
 	
 	public Cliente() {}
 	
-	public Cliente(long id) {
+	public Cliente(Long id) {
 		this.id = id;
 	}
 	

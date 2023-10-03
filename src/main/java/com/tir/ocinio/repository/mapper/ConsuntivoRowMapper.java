@@ -21,8 +21,8 @@ public class ConsuntivoRowMapper implements RowMapper<Consuntivo>{
 		var temp_fine= rs.getTimestamp("con_orario_fine");
 		
 		consuntivo.setId(rs.getLong("con_id"));
-		consuntivo.setOrario_inizio(temp_inizio.toLocalDateTime());
-		consuntivo.setOrario_fine(temp_fine.toLocalDateTime());
+		consuntivo.setOrarioInizio(temp_inizio.toLocalDateTime());
+		consuntivo.setOrarioFine(temp_fine.toLocalDateTime());
 		consuntivo.setTipologia(rs.getString("con_tipologia"));
 
 		var dipendente = new Dipendente(rs.getLong("dip_id"));

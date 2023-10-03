@@ -2,7 +2,7 @@ package com.tir.ocinio.entity;
 
 public class Dipendente {
 
-	private long id;
+	private Long id;
 	
 	private String nome;
 	
@@ -24,7 +24,7 @@ public class Dipendente {
 	
 	public Dipendente() {}
 
-	public Dipendente(long id, String nome, String cognome, String cf, String email, String password, String telefono,
+	public Dipendente(Long id, String nome, String cognome, String cf, String email, String password, String telefono,
 			Ruolo ruolo, Boolean registrato, Boolean attivo) {
 		this.id = id;
 		this.nome = nome;
@@ -38,7 +38,7 @@ public class Dipendente {
 		this.attivo = attivo;
 	}
 	
-	public Dipendente(long id) {
+	public Dipendente(Long id) {
 		this.id = id;
 	}
 
@@ -46,7 +46,7 @@ public class Dipendente {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

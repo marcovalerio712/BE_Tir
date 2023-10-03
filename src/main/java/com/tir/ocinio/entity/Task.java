@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Task {
-	private long id;
+	private Long id;
 	private String descrizione;
 	private String nome;
-	private Date data_assegnazione;
-	private Date data_consegna;
+	private Date dataAssegnazione;
+	private Date dataConsegna;
 	
 	private Dipendente dipendente;
 	private Commessa commessa;
@@ -22,7 +22,7 @@ public class Task {
 	}
 	
 	
-	public void setId(long l) {
+	public void setId(Long l) {
 		this.id = l;
 	}
 	
@@ -47,23 +47,23 @@ public class Task {
 	}
 	
 	
-	public Date getData_assegnazione() {
-		return data_assegnazione;
+	public Date getDataAssegnazione() {
+		return dataAssegnazione;
 	}
 	
 	
-	public void setData_assegnazione(Date data_assegnazione) {
-		this.data_assegnazione = data_assegnazione;
+	public void setDataAssegnazione(Date dataAssegnazione) {
+		this.dataAssegnazione = dataAssegnazione;
 	}
 	
 	
-	public Date getData_consegna() {
-		return data_consegna;
+	public Date getDataConsegna() {
+		return dataConsegna;
 	}
 	
 	
-	public void setData_consegna(Date data_consegna) {
-		this.data_consegna = data_consegna;
+	public void setDataConsegna(Date dataConsegna) {
+		this.dataConsegna = dataConsegna;
 	}
 	
 	
@@ -99,17 +99,17 @@ public class Task {
 	
 	public Task() {}
 
-	public Task(String descrizione, String nome, Date data_assegnazione, Date data_consegna,
-			Dipendente id_dipendente, Commessa id_commessa) {
+	public Task(String descrizione, String nome, Date dataAssegnazione, Date dataConsegna,
+			Dipendente dipendente, Commessa commessa) {
 		this.descrizione = descrizione;
 		this.nome = nome;
-		this.data_assegnazione = data_assegnazione;
-		this.data_consegna = data_consegna;
+		this.dataAssegnazione = dataAssegnazione;
+		this.dataConsegna = dataConsegna;
 		this.dipendente = dipendente;
 		this.commessa = commessa;
 	}
 	
-	public Task(long id) {
+	public Task(Long id) {
 		this.id = id;
 	}
 
@@ -117,7 +117,7 @@ public class Task {
 	@Override
 	public String toString() {
 		return "Task [id=" + id + ", descrizione=" + descrizione + ", nome=" + nome + ", data_assegnazione="
-				+ data_assegnazione + ", data_consegna=" + data_consegna + ", dipendente=" + dipendente + ", commessa="
+				+ dataAssegnazione + ", data_consegna=" + dataConsegna + ", dipendente=" + dipendente + ", commessa="
 				+ commessa + ", dipendentiAssegnati=" + dipendentiAssegnati + "]";
 	}
 	

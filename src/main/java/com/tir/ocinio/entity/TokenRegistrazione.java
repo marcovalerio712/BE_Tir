@@ -2,24 +2,21 @@ package com.tir.ocinio.entity;
 
 public class TokenRegistrazione {
 
-	private Long id_dipendente;
+	private Long idDipendente;
 	
 	private String token;
-	
-	
 
-	public TokenRegistrazione(Long id_dipendente, String token) {
-		super();
-		this.id_dipendente = id_dipendente;
+	public TokenRegistrazione(Long idDipendente, String token) {
+		this.idDipendente = idDipendente;
 		this.token = token;
 	}
 
-	public Long getId_dipendente() {
-		return id_dipendente;
+	public Long getIdDipendente() {
+		return idDipendente;
 	}
 
-	public void setId_dipendente(Long id_dipendente) {
-		this.id_dipendente = id_dipendente;
+	public void setIdDipendente(Long idDipendente) {
+		this.idDipendente = idDipendente;
 	}
 
 	public String getToken() {
@@ -32,7 +29,7 @@ public class TokenRegistrazione {
 
 	@Override
 	public String toString() {
-		return "TokenRegistrazione [id_dipendente=" + id_dipendente + ", token=" + token + "]";
+		return "TokenRegistrazione [id_dipendente=" + idDipendente + ", token=" + token + "]";
 	}
 	
 	

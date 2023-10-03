@@ -11,7 +11,7 @@ public class Commessa {
 	private Float importoContratto;
 	private Date dataInizio;
 	private Date dataFine;
-	private Cliente Cliente;
+	private Cliente cliente;
 	private Boolean attivo;
 
 	public Commessa(long id) {
@@ -21,7 +21,7 @@ public class Commessa {
 	public Commessa(){}
 	
 	public Commessa(Long id, String tipo, Long durata, String descrizione, Float importoContratto, Date dataInizio,
-			Date dataFine, com.tir.ocinio.entity.Cliente cliente, boolean attivo) {
+			Date dataFine, Cliente cliente, boolean attivo) {
 		super();
 		this.id = id;
 		this.tipo = tipo;
@@ -30,7 +30,7 @@ public class Commessa {
 		this.importoContratto = importoContratto;
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
-		Cliente = cliente;
+		this.cliente = cliente;
 		this.attivo = attivo;
 	}
 
@@ -91,11 +91,11 @@ public class Commessa {
 	}
 
 	public Cliente getCliente() {
-		return Cliente;
+		return cliente;
 	}
 
 	public void setCliente(Cliente cliente) {
-		Cliente = cliente;
+		this.cliente = cliente;
 	}
 	
 	public boolean isAttivo() {

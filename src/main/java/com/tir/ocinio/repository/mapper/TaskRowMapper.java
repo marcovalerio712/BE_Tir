@@ -21,8 +21,8 @@ public class TaskRowMapper implements RowMapper<Task>{
 		task.setId(rs.getLong("tas_id"));
 		task.setDescrizione(rs.getString("tas_descrizione"));
 		task.setNome(rs.getString("tas_nome"));
-		task.setData_assegnazione(rs.getDate("tas_data_assegnazione"));
-		task.setData_consegna(rs.getDate("tas_data_consegna"));
+		task.setDataAssegnazione(rs.getDate("tas_data_assegnazione"));
+		task.setDataConsegna(rs.getDate("tas_data_consegna"));
 		//task.setCommessa();
 		task.setDipendente(null);
 		return task;

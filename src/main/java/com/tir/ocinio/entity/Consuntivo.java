@@ -4,17 +4,17 @@ import java.time.LocalDateTime;
 
 public class Consuntivo {
 
-	private long id;
-	private LocalDateTime orario_inizio;
-	private LocalDateTime orario_fine;
+	private Long id;
+	private LocalDateTime orarioInizio;
+	private LocalDateTime orarioFine;
 	private String tipologia;
 	private Dipendente dipendente;
 
-	public Consuntivo(LocalDateTime orario_inizio, LocalDateTime orario_fine, String tipologia,
+	public Consuntivo(LocalDateTime orarioInizio, LocalDateTime orarioFine, String tipologia,
 			Dipendente dipendente) {
 		super();
-		this.orario_inizio = orario_inizio;
-		this.orario_fine = orario_fine;
+		this.orarioInizio = orarioInizio;
+		this.orarioFine = orarioFine;
 		this.tipologia = tipologia;
 		this.dipendente = dipendente;
 	}
@@ -23,32 +23,32 @@ public class Consuntivo {
 
 	}
 	
-	public Consuntivo(long id) {
+	public Consuntivo(Long id) {
 		this.id = id;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public LocalDateTime getOrario_inizio() {
-		return orario_inizio;
+	public LocalDateTime getOrarioInizio() {
+		return orarioInizio;
 	}
 
-	public void setOrario_inizio(LocalDateTime orario_inizio) {
-		this.orario_inizio = orario_inizio;
+	public void setOrarioInizio(LocalDateTime orarioInizio) {
+		this.orarioInizio = orarioInizio;
 	}
 
-	public LocalDateTime getOrario_fine() {
-		return orario_fine;
+	public LocalDateTime getOrarioFine() {
+		return orarioFine;
 	}
 
-	public void setOrario_fine(LocalDateTime orario_fine) {
-		this.orario_fine = orario_fine;
+	public void setOrarioFine(LocalDateTime orarioFine) {
+		this.orarioFine = orarioFine;
 	}
 
 	public String getTipologia() {
@@ -69,7 +69,7 @@ public class Consuntivo {
 
 	@Override
 	public String toString() {
-		return "Consuntivo [id=" + id + ", orario_inizio=" + orario_inizio + ", orario_fine=" + orario_fine
+		return "Consuntivo [id=" + id + ", orario_inizio=" + orarioInizio + ", orario_fine=" + orarioFine
 				+ ", tipologia=" + tipologia + ", id_dipendente=" + dipendente + "]";
 	}
 

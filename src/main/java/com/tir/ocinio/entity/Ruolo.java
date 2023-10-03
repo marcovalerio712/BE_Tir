@@ -1,11 +1,11 @@
 package com.tir.ocinio.entity;
 
 public class Ruolo{
-	private long id;
-	private float compenso;
+	private Long id;
+	private Float compenso;
 	private String anzianita;
 
-	public Ruolo(int compenso, String anzianita) {
+	public Ruolo(Float compenso, String anzianita) {
 		this.compenso = compenso;
 		this.anzianita = anzianita;
 	}

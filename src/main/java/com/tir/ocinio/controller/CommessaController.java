@@ -12,13 +12,13 @@ import com.tir.ocinio.entity.Commessa;
 import com.tir.ocinio.repository.dao.CommessaDAO;
 
 @RestController
-@RequestMapping("/v1/commessa")
+@RequestMapping("/api/commessa")
 public class CommessaController {
 
 	@Autowired
 	private CommessaDAO commessaDAO;
 	
-	@GetMapping("/all")
+	@GetMapping("")
 	public ResponseEntity<List<Commessa>> allCommesse(){
 		var commesse = commessaDAO.getAll();
 		return ResponseEntity.ok(commesse);
