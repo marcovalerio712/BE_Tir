@@ -18,7 +18,7 @@ public class CommessaController {
 	@Autowired
 	private CommessaDAO commessaDAO;
 	
-	@GetMapping("")
+	@GetMapping("/all")
 	public ResponseEntity<List<Commessa>> allCommesse(){
 		var commesse = commessaDAO.getAll();
 		return ResponseEntity.ok(commesse);

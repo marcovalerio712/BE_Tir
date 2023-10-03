@@ -17,7 +17,7 @@ public class DipendenteController {
 	@Autowired
 	private DipendenteService dipService;
 	
-	@GetMapping("")
+	@GetMapping("/all")
 	public List<Dipendente> getAllDipendenti(){
 		return dipService.getAllDipendenti();
 	}
