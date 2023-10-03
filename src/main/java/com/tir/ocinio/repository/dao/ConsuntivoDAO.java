@@ -1,5 +1,6 @@
 package com.tir.ocinio.repository.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,15 @@ public class ConsuntivoDAO implements DAO<Consuntivo>{
 	@Override
 	public Consuntivo insert(Consuntivo t) {
 		
-		//da implementare dopo cambiamento su db di procedura
+		Consuntivo newConsuntivo = null;
 		
-		return null;
+		var function = new SimpleJdbcCall(template).
+				withCatalogName("GRUPPO_2").
+				withFunctionName("F_INSERT_CONSUNTIVI");
+		
+		var newId = function.executeFunction(BigDecimal.class, t.getTipologia(), t.getDipendente().getId()).longValue();
+		
+		return getById(newId);
 	}
 
 	@Override

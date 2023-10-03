@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,6 +42,24 @@ public class ConsuntivoController {
 	public ResponseEntity<Integer> getCountConsuntivi(){
 		var counterConsuntivi = conService.getCountConsuntivi();
 		return new ResponseEntity<>(counterConsuntivi, HttpStatus.OK);
-	}	
+	}
+	
+	@GetMapping("")
+	public ResponseEntity<Consuntivo> insertConsuntivo (@RequestBody Consuntivo con) {
+		con = conService.insertConsuntivo(con);
+		return new ResponseEntity<>(con, HttpStatus.OK);
+	}
+	
+	@GetMapping("")
+	public ResponseEntity<Consuntivo> updateConsuntivo (@RequestBody Consuntivo con){
+		con = conService.updateConsuntivo(con);
+		return new ResponseEntity<>(con, HttpStatus.OK);
+	}
+	
+	@GetMapping("")
+	public ResponseEntity<Object> deleteConsuntivo (@PathVariable(value = "id") Long id){
+		conService.deleteConsuntivo(id);
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
 
 }
