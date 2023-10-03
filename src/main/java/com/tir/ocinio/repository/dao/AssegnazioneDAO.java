@@ -1,9 +1,11 @@
 package com.tir.ocinio.repository.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import com.tir.ocinio.entity.Assegnazione;
@@ -23,18 +25,18 @@ public class AssegnazioneDAO implements DAO<Assegnazione>{
 	}
 	
 	public Assegnazione getAssById(Long id_dip, Long id_com) {
-
+		
 		return null;
 	}
 	
-	public Assegnazione getAssById_Dip(Long id_dip) {
-		String query = String.format(AssegnazioneQuery.oneAssegnazioneByDip, id_dip);
+	public Assegnazione getAllAssById_Dip(Long id_dip) {
+		String query = String.format(AssegnazioneQuery.AllAssegnazioniByDip, id_dip);
 		var assegnazione = template.queryForObject(query, new AssegnazioneRowMapper());
 		return assegnazione;
 	}
 	
-	public Assegnazione getAssById_Com(Long id_com) {
-		String query = String.format(AssegnazioneQuery.oneAssegnazioneByCom, id_com);
+	public Assegnazione getAllAssById_Com(Long id_com) {
+		String query = String.format(AssegnazioneQuery.AllAssegnazioniByCom, id_com);
 		var assegnazione = template.queryForObject(query, new AssegnazioneRowMapper());
 		return assegnazione;
 	}
@@ -60,8 +62,17 @@ public class AssegnazioneDAO implements DAO<Assegnazione>{
 
 	@Override
 	public Assegnazione insert(Assegnazione t) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Assegnazione newAssegnazione = null;
+
+		var function = new SimpleJdbcCall(template).withCatalogName("GRUPPO_3")
+				.withFunctionName("F_INSERT_ASSEGNAZIONI");
+
+		var newId = function.executeFunction(BigDecimal.class, t.getDipendente(), t.getCommessa(), t.getCompetenza()).longValue();
+
+		newAssegnazione = getById(newId);
+
+		return newAssegnazione;
 	}
 
 	@Override
