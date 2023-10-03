@@ -18,5 +18,29 @@ public class DipendenteService {
 		var dipendenti = dipDao.getAll();
 		return dipendenti;
 	}
+
+	public Dipendente getDipendenteById(Long id) {
+		
+		var dipendente = dipDao.getById(id);
+		return dipendente;
+		
+	}
+	
+	public Dipendente registerDipendente(Dipendente dip) {
+		
+		return dipDao.insert(dip);
+			
+	}
+	
+	public Dipendente updateDipendente(Dipendente dip) {
+		
+		return dipDao.update(dip);
+	}
+	
+	public void deleteDipendente(Long id) {
+		
+		dipDao.delete(id);
+		
+	}
 	
 }
