@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
@@ -72,8 +71,15 @@ public class DipendenteDAO implements DAO<Dipendente>{
 
 	@Override
 	public Dipendente update(Dipendente t) {
-		// TODO Auto-generated method stub
-		return null;
+
+		var procedure = new SimpleJdbcCall(template).
+							withCatalogName("GRUPPO_1").
+							withProcedureName("P_UPDATE_DIPENDENTE");
+		
+		procedure.execute(t.getId(), t.getNome(), t.getCognome(), t.getCf(), t.getPassword(), t.getTelefono());
+		
+		return getById(t.getId());
+		
 	}
 	
 
