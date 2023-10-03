@@ -33,6 +33,18 @@ public class ClienteService {
 		
 		return counterClienti;
 		
+	}	
+	
+	public Cliente insertCliente(Cliente cli) {
+		return cliDao.insert(cli);
 	}
+	
+	public Cliente updateCliente(Cliente cli) {
+		return cliDao.update(cli);
+	}
+	
+	public void deleteCliente(Long id) {
+		cliDao.delete(id);
+	}	
 
 }

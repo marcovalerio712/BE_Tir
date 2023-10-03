@@ -7,10 +7,6 @@ public class ClienteQuery {
 	
 	public static String oneCliente = allClienti + "where c.id = %d";
 	
-	public static String countClienti = "select count(*) from clienti";
-	
-	//public static String insertCliente = "execute F_INSERISCI_CLIENTE";
-	
-	
+	public static String countClienti = "select count(*) from clienti";	
 
 }

@@ -5,8 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,10 +26,9 @@ public class ClienteController {
 	private ClienteService cliService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> getClienteById(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<Cliente> getClienteById(@PathVariable(value = "id") Long id){
 		Cliente cliente = cliService.getClienteById(id);
-		return new ResponseEntity<>(cliente, HttpStatus.OK);
-		
+		return new ResponseEntity<>(cliente, HttpStatus.OK);		
 	}
 	
 	@GetMapping("/all")
@@ -41,5 +44,22 @@ public class ClienteController {
 	}
 	
 	
-
+	@PostMapping("")
+	public ResponseEntity<Cliente> insertCliente(@RequestBody Cliente cli){
+		cli = cliService.insertCliente(cli);
+		return new ResponseEntity<>(cli, HttpStatus.OK);
+	}
+	
+	@PutMapping("")
+	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cli){
+		cli = cliService.updateCliente(cli);
+		return new ResponseEntity<>(cli, HttpStatus.OK);		
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Object> deleteCliente(@PathVariable(value = "id") Long id){
+		cliService.deleteCliente(id);
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
+	
 }

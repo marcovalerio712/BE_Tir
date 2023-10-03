@@ -45,4 +45,17 @@ public class ConsuntivoService {
 		var counterConsuntivi = conDao.count();
 		return counterConsuntivi;
 	}
+	
+	public Consuntivo insertConsuntivo(Consuntivo con) {
+		return conDao.insert(con);
+	}
+	
+	public Consuntivo updateConsuntivo(Consuntivo con) {
+		return conDao.update(con);
+	}
+	
+	public void deleteConsuntivo(Long id) {
+		conDao.delete(id);
+	}
+	
 }

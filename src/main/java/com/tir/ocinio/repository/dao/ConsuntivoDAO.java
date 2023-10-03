@@ -41,25 +41,31 @@ public class ConsuntivoDAO implements DAO<Consuntivo>{
 	@Override
 	public Consuntivo insert(Consuntivo t) {
 		
-		var function = new SimpleJdbcCall(template).
-				withCatalogName("GRUPPO_2").
-				withFunctionName("P_INSERT_CONSUNTIVI");
-		
-		var newId = function.executeFunction(BigDecimal.class, );
+		//da implementare dopo cambiamento su db di procedura
 		
 		return null;
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		
+		var procedure = new SimpleJdbcCall(template).
+							withCatalogName("GRUPPO_2").
+							withProcedureName("P_DELETE_CONSUNTIVI");
+		
+		procedure.execute(id);		
 	}
 
 	@Override
 	public Consuntivo update(Consuntivo t) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		var procedure = new SimpleJdbcCall(template).
+				withCatalogName("GRUPPO_2").
+				withProcedureName("P_DELETE_CONSUNTIVI");
+
+		procedure.execute(t.getId(), t.getOrarioInizio(), t.getOrarioFine(), t.getTipologia(), t.getDipendente() );
+
+		return getById(t.getId());
 	}
 
 }
