@@ -1,5 +1,6 @@
 package com.tir.ocinio.repository.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +45,13 @@ public class DipendenteDAO implements DAO<Dipendente>{
 	public Dipendente insert(Dipendente t) {
 		Dipendente newDipendente = null;
 		
-		var procedure = new SimpleJdbcCall(template).
+		var function = new SimpleJdbcCall(template).
 							withCatalogName("GRUPPO_1").
 							withFunctionName("F_INSERISCI_DIPENDENTE");
 		
-		var newId = procedure.executeFunction(Long.class, t.getNome(), t.getCognome(), t.getCf(), 
-												t.getEmail(), t.getPassword(), t.getTelefono());
+		var newId = function.executeFunction(BigDecimal.class, t.getNome(), t.getCognome(), t.getCf(), 
+												t.getEmail(), t.getPassword(), t.getTelefono()).longValue();
+		
 		
 		newDipendente = getById(newId);
 		
@@ -58,7 +60,13 @@ public class DipendenteDAO implements DAO<Dipendente>{
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		
+		
+		var procedure = new SimpleJdbcCall(template).
+							withCatalogName("GRUPPO_1").
+							withProcedureName("P_DELETE_DIPENDENTE");
+		
+		procedure.execute(id);
 		
 	}
 

@@ -27,6 +27,7 @@ class BeApplicationTests {
 		
 		var alessandro = new Dipendente();
 		
+		
 		alessandro.setNome("Alessandro");
 		alessandro.setCognome("Marchionne");
 		alessandro.setCf("MRCLSN95P17H501N");
@@ -38,6 +39,13 @@ class BeApplicationTests {
 		
 		System.out.println(alessandro);
 		
+		
+	}
+	
+	@Test
+	void testDeleteDipendente() {
+		
+		dao.delete(24L);
 		
 	}
 
