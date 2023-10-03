@@ -9,4 +9,6 @@ public class ConsuntivoQuery {
 	  
 
 	public static String oneConsuntivo = allConsuntivi + "and c.id = %d";
+	
+	public static String countConsuntivi = "select count(*) from consuntivi";
 }

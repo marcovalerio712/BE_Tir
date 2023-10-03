@@ -18,10 +18,8 @@ public class ConsuntivoDAO implements DAO<Consuntivo>{
 	
 	@Override
 	public Consuntivo getById(Long id) {
-	
 		String query = String.format(ConsuntivoQuery.oneConsuntivo, id);
 		var consuntivo = template.queryForObject(query, new ConsuntivoRowMapper());
-		
 		return consuntivo;
 	}
 
@@ -34,8 +32,9 @@ public class ConsuntivoDAO implements DAO<Consuntivo>{
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		String query = ConsuntivoQuery.countConsuntivi;
+		var counter = template.queryForObject(query, Integer.class);
+		return counter;
 	}
 
 	@Override
