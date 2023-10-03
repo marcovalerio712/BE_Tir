@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import com.tir.ocinio.entity.Consuntivo;
@@ -39,7 +40,13 @@ public class ConsuntivoDAO implements DAO<Consuntivo>{
 
 	@Override
 	public Consuntivo insert(Consuntivo t) {
-		// TODO Auto-generated method stub
+		
+		var function = new SimpleJdbcCall(template).
+				withCatalogName("GRUPPO_2").
+				withFunctionName("P_INSERT_CONSUNTIVI");
+		
+		var newId = function.executeFunction(BigDecimal.class, );
+		
 		return null;
 	}
 
