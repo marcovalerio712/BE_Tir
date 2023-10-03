@@ -55,6 +55,7 @@ public class DipendenteDAO implements DAO<Dipendente>{
 		newDipendente = getById(newId);
 		
 		return newDipendente;
+		
 	}
 
 	@Override
