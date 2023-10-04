@@ -17,7 +17,6 @@ public class EmailUtils {
 		message.setSubject(subject);
 		message.setText(body);
 		mailSender.send(message);
-
 	}
 }
 

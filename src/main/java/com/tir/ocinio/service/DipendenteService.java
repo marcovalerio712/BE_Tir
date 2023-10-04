@@ -38,19 +38,24 @@ public class DipendenteService {
 	}
 	
 	private void sendRegistrationConfirm(Dipendente dip) {
-		var token = ((DipendenteDAO) dipDao).getToken(dip.getId());
+		var token = ((DipendenteDAO) dipDao).getToken(dip.getId()); 
+		//casting necessario per l'aggiunta dei metodi che non rispecchiano l'interfaccia
 		
 		var header = "Conferma registrazione per ProgTir";
 		var message = "Benvenuto su ProgTir!\n "
-					+ "Per confermare la tua registrazione, clicca sul segiente link:\n"
+					+ "Per confermare la tua registrazione, clicca sul seguente link:\n"
 					+ generateLink(token);
 		
-		new Thread()
+		new Thread() //consigliato per tempi di risposta lunghi della mail
 		{
 		    public void run() {
 		    	mail.sendEmail(dip.getEmail(), header, message);
 		    }
 		}.start();
+	}
+	
+	public void confirmRegistration(String token) {
+		((DipendenteDAO) dipDao).confirmToken(token);
 	}
 	
 	public Dipendente registerDipendente(Dipendente dip) {
@@ -68,10 +73,6 @@ public class DipendenteService {
 		
 		dipDao.delete(id);
 		
-	}
-	
-	public void confirmRegistration(String token) {
-		((DipendenteDAO) dipDao).confirmToken(token);
 	}
 	
 }

@@ -93,8 +93,7 @@ public class DipendenteDAO implements DAO<Dipendente>{
 				withCatalogName("GRUPPO_1").
 				withProcedureName("P_CONFIRM_TOKEN");
 		
-		procedure.execute(token);
-		
+		procedure.execute(token);		
 	}
 	
 	
