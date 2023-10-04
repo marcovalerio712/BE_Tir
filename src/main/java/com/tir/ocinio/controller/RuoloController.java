@@ -50,7 +50,7 @@ public class RuoloController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteRuolo(@RequestParam (value = "id") Long id) {
+	public ResponseEntity<Object> deleteRuolo(@PathVariable (value = "id") Long id) {
 		
 		ruoService.deleteRuolo(id);
 		
