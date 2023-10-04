@@ -2,9 +2,9 @@ package com.tir.ocinio.repository.query;
 
 public class ConsuntivoQuery {
 	
-	public static String allConsuntivi = "select c.id con_id, c.orario_inizio con_orario_inizio, c.orario_fine con_orario_fine"
-							+ "c.tipologia con_tipologia, d.id dip_id"
-							+ "from Consuntivi c, Dipendente d"
+	public static String allConsuntivi = "select c.id con_id, c.orario_inizio con_orario_inizio, c.orario_fine con_orario_fine, "
+							+ "c.tipologia con_tipologia, d.id dip_id "
+							+ "from Consuntivi c, Dipendenti d "
 							+ "where c.id_dipendente = d.id";
 	  
 
