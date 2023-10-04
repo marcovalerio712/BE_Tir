@@ -8,7 +8,7 @@ public class ConsuntivoQuery {
 							+ "where c.id_dipendente = d.id";
 	  
 
-	public static String oneConsuntivo = allConsuntivi + "and c.id = %d";
+	public static String oneConsuntivo = allConsuntivi + " and c.id = %d";
 	
 	public static String countConsuntivi = "select count(*) from consuntivi";
 }
