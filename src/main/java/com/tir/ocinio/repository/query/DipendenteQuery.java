@@ -15,5 +15,6 @@ public class DipendenteQuery {
 	
 	public static String insertDipendente = "execute f_inserisci_dipendente";
 	
-	
+	public static String tokenRegistrazione = "select token from token_registrazione "
+									        + "where id_dipendente = %d";
 }

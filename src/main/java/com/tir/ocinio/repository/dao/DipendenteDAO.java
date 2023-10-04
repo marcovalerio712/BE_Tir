@@ -81,9 +81,21 @@ public class DipendenteDAO implements DAO<Dipendente>{
 		
 	}
 	
-
-
+	public String getToken(Long id) {
+		String query = String.format(DipendenteQuery.tokenRegistrazione, id);
+		var token = template.queryForObject(query, String.class);
+		return token;
+	}
 	
+	public void confirmToken(String token) {
+		
+		var procedure = new SimpleJdbcCall(template).
+				withCatalogName("GRUPPO_1").
+				withProcedureName("P_CONFIRM_TOKEN");
+		
+		procedure.execute(token);
+		
+	}
 	
 	
 }

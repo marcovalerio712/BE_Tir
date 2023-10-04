@@ -53,4 +53,10 @@ public class DipendenteController {
 		return ResponseEntity.ok(null);
 	}
 	
+	@PostMapping("/confirm/{token}")
+	public ResponseEntity<Object> confirmRegistration(@PathVariable("token") String token){
+		dipService.confirmRegistration(token);
+		return ResponseEntity.ok(null);
+	}
+	
 }
