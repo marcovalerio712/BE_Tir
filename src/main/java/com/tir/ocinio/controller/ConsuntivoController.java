@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,19 +47,19 @@ public class ConsuntivoController {
 		return new ResponseEntity<>(counterConsuntivi, HttpStatus.OK);
 	}
 	
-	@GetMapping("")
+	@PostMapping("")
 	public ResponseEntity<Consuntivo> insertConsuntivo (@RequestBody Consuntivo con) {
 		con = conService.insertConsuntivo(con);
 		return new ResponseEntity<>(con, HttpStatus.OK);
 	}
 	
-	@GetMapping("")
+	@PutMapping("")
 	public ResponseEntity<Consuntivo> updateConsuntivo (@RequestBody Consuntivo con){
 		con = conService.updateConsuntivo(con);
 		return new ResponseEntity<>(con, HttpStatus.OK);
 	}
 	
-	@GetMapping("")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deleteConsuntivo (@PathVariable(value = "id") Long id){
 		conService.deleteConsuntivo(id);
 		return new ResponseEntity<>(null, HttpStatus.OK);

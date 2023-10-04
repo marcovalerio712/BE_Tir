@@ -26,4 +26,22 @@ public class RuoloService {
 		
 		return ruoli;
 	}
+	
+	public Ruolo insertRuolo (Ruolo ruo) {
+		
+		return ruoDao.insert(ruo);
+		
+	}
+	
+	public Ruolo updateRuolo (Ruolo ruo) {
+		
+		return ruoDao.update(ruo);
+		
+	}
+	
+	public void deleteRuolo (Long id) {
+		
+		ruoDao.delete(id);
+		
+	}
 }
