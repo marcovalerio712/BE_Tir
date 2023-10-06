@@ -70,7 +70,7 @@ public class ClienteDAO implements DAO<Cliente>{
 		
 		var procedure = new SimpleJdbcCall(template).
 				withCatalogName("GRUPPO_1").
-				withProcedureName("P_DELETE_CLIENTE");
+				withProcedureName("P_UPDATE_CLIENTE");
 
 		procedure.execute(t.getId(), t.getNome(), t.getPartitaIva(), t.getTelefono());
 
