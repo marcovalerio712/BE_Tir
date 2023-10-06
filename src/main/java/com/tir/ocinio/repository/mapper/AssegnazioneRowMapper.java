@@ -19,11 +19,11 @@ public class AssegnazioneRowMapper implements RowMapper<Assegnazione>{
 		var dipendente = new Dipendente(rs.getLong("ass_id_dipendente"));
 		var commessa = new Commessa(rs.getLong("ass_id_commessa"));
 		
-		assegnazione.setId(rs.getLong("ass_id"));
 		assegnazione.setDipendente(dipendente);
 		assegnazione.setCommessa(commessa);
 		assegnazione.setCompetenza(rs.getLong("ass_competenza"));
 		assegnazione.setAttivo(rs.getInt("ass_attivo") == 1);
+		assegnazione.setId(rs.getLong("ass_id"));
 		
 		return assegnazione;
 	}

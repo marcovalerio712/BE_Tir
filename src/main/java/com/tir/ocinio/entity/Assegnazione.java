@@ -17,7 +17,6 @@ public class Assegnazione {
 	}
 
 	public Assegnazione(Long id, Dipendente dipendente, Commessa commessa, Long competenza, Boolean attivo) {
-		super();
 		this.id = id;
 		this.dipendente = dipendente;
 		this.commessa = commessa;
@@ -57,7 +56,7 @@ public class Assegnazione {
 		this.competenza = competenza;
 	}
 
-	public Boolean isAttivo() {
+	public Boolean getAttivo() {
 		return attivo;
 	}
 
