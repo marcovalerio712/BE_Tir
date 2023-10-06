@@ -75,7 +75,7 @@ public class DipendenteDAO implements DAO<Dipendente>{
 							withCatalogName("GRUPPO_1").
 							withProcedureName("P_UPDATE_DIPENDENTE");
 		
-		procedure.execute(t.getId(), t.getNome(), t.getCognome(), t.getCf(), t.getEmail(), t.getPassword(), t.getTelefono());
+		procedure.execute(t.getId(), t.getNome(), t.getCognome(), t.getCf(), t.getPassword(), t.getTelefono());
 		
 		return getById(t.getId());
 		
