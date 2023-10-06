@@ -33,7 +33,7 @@ public class DipendenteService {
 	
 	private String generateLink(String token) {
 		
-		return "http://localhost:4200/confirm/" + token;
+		return "http://localhost:4200/confirm?token=" + token;
 		
 	}
 	
