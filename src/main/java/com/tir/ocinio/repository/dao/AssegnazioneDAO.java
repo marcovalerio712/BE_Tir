@@ -20,24 +20,21 @@ public class AssegnazioneDAO implements DAO<Assegnazione>{
 	
 	@Override
 	public Assegnazione getById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public Assegnazione getAssById(Long id_dip, Long id_com) {
 		
-		return null;
-	}
-	
-	public Assegnazione getAllAssById_Dip(Long id_dip) {
-		String query = String.format(AssegnazioneQuery.AllAssegnazioniByDip, id_dip);
+		String query = String.format(AssegnazioneQuery.oneAssegnazione, id);
 		var assegnazione = template.queryForObject(query, new AssegnazioneRowMapper());
 		return assegnazione;
 	}
 	
-	public Assegnazione getAllAssById_Com(Long id_com) {
+	public List<Assegnazione> getAllAssById_Dip(Long id_dip) {
+		String query = String.format(AssegnazioneQuery.AllAssegnazioniByDip, id_dip);
+		var assegnazione = template.query(query, new AssegnazioneRowMapper());
+		return assegnazione;
+	}
+	
+	public List<Assegnazione> getAllAssById_Com(Long id_com) {
 		String query = String.format(AssegnazioneQuery.AllAssegnazioniByCom, id_com);
-		var assegnazione = template.queryForObject(query, new AssegnazioneRowMapper());
+		var assegnazione = template.query(query, new AssegnazioneRowMapper());
 		return assegnazione;
 	}
 
@@ -77,17 +74,24 @@ public class AssegnazioneDAO implements DAO<Assegnazione>{
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		
+		var procedure = new SimpleJdbcCall(template).withCatalogName("GRUPPO_3")
+						.withProcedureName("P_DELETE_ASSEGNAZIONI");
+		
+		procedure.execute(id);
+						
 	}
 
 	@Override
 	public Assegnazione update(Assegnazione t) {
-		return null;
-	}
-	
-	public void deleteAss(Integer id_dip, Integer id_com) {
 		
+		var procedure = new SimpleJdbcCall(template).withCatalogName("GRUPPO_3")
+				.withProcedureName("P_UPDATE_ASSEGNAZIONI");
+		
+		procedure.execute(t.getId(), t.getDipendente(), t.getCommessa(), t.getCompetenza());
+		
+		
+		return getById(t.getId());
 	}
 
 }
