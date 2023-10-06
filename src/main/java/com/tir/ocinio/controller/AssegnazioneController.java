@@ -1,5 +1,7 @@
 package com.tir.ocinio.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tir.ocinio.entity.Assegnazione;
 import com.tir.ocinio.service.AssegnazioneService;
+import com.tir.ocinio.util.JsonSerializer;
 
 @RestController
 @RequestMapping("api/assegnazione")
@@ -21,10 +24,17 @@ public class AssegnazioneController {
 	@Autowired
 	AssegnazioneService assService;
 	
+	JsonSerializer serializer = new JsonSerializer();
+	
 	@GetMapping("/{id}")
-	public ResponseEntity<Assegnazione> getAssegnazione(@PathVariable("id") Long id){
+	public ResponseEntity<HashMap<String, Object>> getAssegnazione(@PathVariable("id") Long id){
 		var ass = assService.getAsssegnazioneById(id);
-		return ResponseEntity.ok(ass);
+		
+		String format = "{id, dipendente:{id}, commessa:{id}, competenza, attivo}";
+				
+		var assMap = serializer.serialize(format, ass);
+		
+		return ResponseEntity.ok(assMap);
 	}
 	
 	@PostMapping("")

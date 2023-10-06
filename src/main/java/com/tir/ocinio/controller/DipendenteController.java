@@ -32,6 +32,7 @@ public class DipendenteController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Dipendente> getDipendente(@PathVariable("id") Long id) {
 		var dip = dipService.getDipendenteById(id);
+		
 		return ResponseEntity.ok(dip);
 	}
 	
