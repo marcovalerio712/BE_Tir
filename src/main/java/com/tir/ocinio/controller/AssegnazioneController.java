@@ -38,15 +38,25 @@ public class AssegnazioneController {
 	}
 	
 	@PostMapping("")
-	public ResponseEntity<Assegnazione> inserisciAssegnazione(@RequestBody Assegnazione a){
+	public ResponseEntity<HashMap<String, Object>> inserisciAssegnazione(@RequestBody Assegnazione a){
 		a = assService.inserisciAssegnazione(a);
-		return  ResponseEntity.ok(a);
+		
+		String format = "{id, dipendente:{id}, commessa:{id}, competenza, attivo}";
+		
+		var assMap = serializer.serialize(format, a);
+		
+		return  ResponseEntity.ok(assMap);
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<Assegnazione> updateAssegnazione(@RequestBody Assegnazione a){
+	public ResponseEntity<HashMap<String, Object>> updateAssegnazione(@RequestBody Assegnazione a){
 		a = assService.modificaAssegnazione(a);
-		return ResponseEntity.ok(a);
+		
+		String format = "{id, competenza}";
+		
+		var assMap = serializer.serialize(format, a);
+		
+		return ResponseEntity.ok(assMap);
 	}
 	
 	@DeleteMapping("/{id}")

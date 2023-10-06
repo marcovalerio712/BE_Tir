@@ -65,7 +65,7 @@ public class AssegnazioneDAO implements DAO<Assegnazione>{
 		var function = new SimpleJdbcCall(template).withCatalogName("GRUPPO_3")
 				.withFunctionName("F_INSERT_ASSEGNAZIONI");
 
-		var newId = function.executeFunction(BigDecimal.class, t.getDipendente(), t.getCommessa(), t.getCompetenza()).longValue();
+		var newId = function.executeFunction(BigDecimal.class, t.getDipendente().getId(), t.getCommessa().getId(), t.getCompetenza()).longValue();
 
 		newAssegnazione = getById(newId);
 
@@ -88,7 +88,7 @@ public class AssegnazioneDAO implements DAO<Assegnazione>{
 		var procedure = new SimpleJdbcCall(template).withCatalogName("GRUPPO_3")
 				.withProcedureName("P_UPDATE_ASSEGNAZIONI");
 		
-		procedure.execute(t.getId(), t.getDipendente(), t.getCommessa(), t.getCompetenza());
+		procedure.execute(t.getCompetenza(), t.getId());
 		
 		
 		return getById(t.getId());
