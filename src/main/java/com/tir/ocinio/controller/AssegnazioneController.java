@@ -1,7 +1,6 @@
 package com.tir.ocinio.controller;
 
 import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tir.ocinio.entity.Assegnazione;
 import com.tir.ocinio.service.AssegnazioneService;
-import com.tir.ocinio.util.JsonSerializer;
 
 @RestController
 @RequestMapping("api/assegnazione")

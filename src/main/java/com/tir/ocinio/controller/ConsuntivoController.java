@@ -1,7 +1,7 @@
 package com.tir.ocinio.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,32 +13,34 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.tir.ocinio.entity.Cliente;
 import com.tir.ocinio.entity.Consuntivo;
 import com.tir.ocinio.service.ConsuntivoService;
-import com.tir.ocinio.service.DipendenteService;
 
 @RestController
 @RequestMapping("api/consuntivo")
-public class ConsuntivoController {
+public class ConsuntivoController extends Controller{
+	
 	
 	@Autowired
 	private ConsuntivoService conService;
+
 	
-	@Autowired
-	private DipendenteService dipService;
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<Consuntivo> getConsuntivoById(@PathVariable(value = "id") Long id) {
-		Consuntivo consuntivo = conService.getConsuntivoById(id);
-		return new ResponseEntity<>(consuntivo, HttpStatus.OK);		
+	public ConsuntivoController() {
+		this.format = "{id,orario_inizio,orario_fine,tipologia,id_dipendente:{id}}";
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<HashMap<String, Object>> getConsuntivoById(@PathVariable(value = "id") Long id) {
+		var consuntivo = conService.getConsuntivoById(id);	
+		var conMap = serializer.serialize(format, consuntivo);
+		return ResponseEntity.ok(conMap);
+	}		
+	
 	@GetMapping("/all")
-	public ResponseEntity<List<Consuntivo>> getAllConsuntivi(){
+	public ResponseEntity<HashMap<String, Object>> getAllConsuntivi(){
 		List<Consuntivo> consuntivi = conService.getAllConsuntivi();
-		return new ResponseEntity<>(consuntivi, HttpStatus.OK);
+		var allMap = serializer.serialize(format, consuntivi);
+		return ResponseEntity.ok(allMap);
 	}
 	
 	@GetMapping("/count")
@@ -48,15 +50,16 @@ public class ConsuntivoController {
 	}
 	
 	@PostMapping("")
-	public ResponseEntity<Consuntivo> insertConsuntivo (@RequestBody Consuntivo con) {
+	public ResponseEntity<HashMap<String, Object>> insertConsuntivo (@RequestBody Consuntivo con) {
 		con = conService.insertConsuntivo(con);
-		return new ResponseEntity<>(con, HttpStatus.OK);
-	}
+		var insMap = serializer.serialize(format, con);
+		return ResponseEntity.ok(insMap);	}
 	
 	@PutMapping("")
-	public ResponseEntity<Consuntivo> updateConsuntivo (@RequestBody Consuntivo con){
+	public ResponseEntity<HashMap<String, Object>> updateConsuntivo (@RequestBody Consuntivo con){
 		con = conService.updateConsuntivo(con);
-		return new ResponseEntity<>(con, HttpStatus.OK);
+		var uptMap = serializer.serialize(format, con);
+		return ResponseEntity.ok(uptMap);
 	}
 	
 	@DeleteMapping("/{id}")

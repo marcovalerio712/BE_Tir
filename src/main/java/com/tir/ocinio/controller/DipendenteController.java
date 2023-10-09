@@ -1,9 +1,8 @@
 package com.tir.ocinio.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,33 +18,40 @@ import com.tir.ocinio.service.DipendenteService;
 
 @RestController
 @RequestMapping("api/dipendente")
-public class DipendenteController {
+public class DipendenteController extends Controller{
 
 	@Autowired
 	private DipendenteService dipService;
 	
+	public DipendenteController() {
+		this.format = "{id,nome,cognome,cf,email,telefono,ruolo:{id},registrato,attivo}";
+	}
 	@GetMapping("/all")
-	public List<Dipendente> getAllDipendenti() {
-		return dipService.getAllDipendenti();
+	public ResponseEntity<HashMap<String, Object>> getAllDipendenti() {
+		var all = dipService.getAllDipendenti();
+		var allMap = serializer.serialize(format, all);
+		return ResponseEntity.ok(allMap);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Dipendente> getDipendente(@PathVariable("id") Long id) {
+	public ResponseEntity<HashMap<String, Object>> getDipendente(@PathVariable("id") Long id) {
 		var dip = dipService.getDipendenteById(id);
-		
-		return ResponseEntity.ok(dip);
+		var getMap = serializer.serialize(format, dip);
+		return ResponseEntity.ok(getMap);
 	}
 	
 	@PostMapping("")
-	public ResponseEntity<Dipendente> registerDipendente(@RequestBody Dipendente dip){
+	public ResponseEntity<HashMap<String, Object>> registerDipendente(@RequestBody Dipendente dip){
 		dip = dipService.registerDipendente(dip);
-		return ResponseEntity.ok(dip);
+		var regMap = serializer.serialize(format, dip);
+		return ResponseEntity.ok(regMap);
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<Dipendente> updateDipendente(@RequestBody Dipendente dip) {
+	public ResponseEntity<HashMap<String, Object>> updateDipendente(@RequestBody Dipendente dip) {
 		dip = dipService.updateDipendente(dip);
-		return ResponseEntity.ok(dip);
+		var upMap = serializer.serialize(format, dip);
+		return ResponseEntity.ok(upMap);
 	}
 	
 	@DeleteMapping("/{id}")
