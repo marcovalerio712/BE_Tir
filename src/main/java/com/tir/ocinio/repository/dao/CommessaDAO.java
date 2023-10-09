@@ -69,8 +69,8 @@ public class CommessaDAO implements DAO<Commessa> {
 		var procedure = new SimpleJdbcCall(template).withCatalogName("GRUPPO_3")
 				.withProcedureName("P_UPDATE_COMMESSE");
 
-		procedure.execute(t.getId(), t.getTipo(), t.getDurata(), t.getDescrizione(), t.getImportoContratto(), t.getCliente(),
-				t.getDataInizio(), t.getDataFine(),t.getAttivo());
+		procedure.execute(t.getId(), t.getTipo(), t.getDurata(), t.getDescrizione(), t.getImportoContratto(), t.getCliente().getId(),
+				t.getDataInizio(), t.getDataFine(),t.getAttivo() ? 1 : 0);
 
 		return getById(t.getId());
 
