@@ -15,21 +15,27 @@ import com.tir.ocinio.service.CommessaService;
 
 @RestController
 @RequestMapping("/api/commessa")
-public class CommessaController {
-
+public class CommessaController extends Controller{
+	
 	@Autowired
 	private CommessaService comService;
+	
+	public CommessaController() {
+		format = "{id, tipo, durata, descrizione, importContratto, dataInizio, dataFine, cliente:{id}, attivo}";
+	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Commessa> getCommessaById(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<HashMap<String, Object>> getCommessaById(@PathVariable(value = "id") Long id) {
 		Commessa commessa = comService.getCommessaById(id);
-		return new ResponseEntity<>(commessa, HttpStatus.OK);
+		var commessaMap = serializer.serialize(format, commessa);
+		return new ResponseEntity<>(commessaMap, HttpStatus.OK);
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Commessa>> getAllCommesse() {
+	public ResponseEntity<List<HashMap<String, Object>>> getAllCommesse() {
 		List<Commessa> commesse = comService.getAllCommesse();
-		return new ResponseEntity<>(commesse, HttpStatus.OK);
+		var commessaList = serializer.serializeAll(format, commesse);
+		return new ResponseEntity<>(commessaList, HttpStatus.OK);
 	}
 
 	@GetMapping("/count")
@@ -39,9 +45,10 @@ public class CommessaController {
 	}
 
 	@PostMapping("")
-	public ResponseEntity<Commessa> insertCommessa(@RequestBody Commessa com) {
+	public ResponseEntity<HashMap<String, Object>> insertCommessa(@RequestBody Commessa com) {
 		com = comService.insertCommessa(com);
-		return new ResponseEntity<>(com, HttpStatus.OK);
+		var comMap = serializer.serialize(format, com);
+		return new ResponseEntity<>(comMap, HttpStatus.OK);
 	}
 
 }

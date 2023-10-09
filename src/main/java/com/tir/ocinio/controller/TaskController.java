@@ -15,9 +15,13 @@ import com.tir.ocinio.service.TaskService;
 
 @RestController
 @RequestMapping("api/task")
-public class TaskController {
+public class TaskController extends Controller{
 	@Autowired
 	private TaskService tasService;
+	
+	public TaskController() {
+		format = "{id, descrizione, nome, dataAssegnazione, dataConsegna, assegnazione}";
+	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Task> getTaskById(@PathVariable(value = "id") Long id) {

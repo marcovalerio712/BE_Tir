@@ -15,6 +15,10 @@ public class Assegnazione {
 	public Assegnazione() {
 		
 	}
+	
+	public Assegnazione(Long id) {
+		this.id = id;
+	}
 
 	public Assegnazione(Long id, Dipendente dipendente, Commessa commessa, Long competenza, Boolean attivo) {
 		this.id = id;
