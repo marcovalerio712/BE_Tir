@@ -1,5 +1,6 @@
 package com.tir.ocinio.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,40 +13,53 @@ import com.tir.ocinio.service.RuoloService;
 
 @RestController
 @RequestMapping("api/ruolo")
-public class RuoloController {
+public class RuoloController extends Controller{
 	
 	@Autowired
 	private RuoloService ruoService;
 	
+	public RuoloController () {
+		this.format = "{id, compenso, anzianita}";
+	}
+	
 	@GetMapping("/{id}")
-	public ResponseEntity<Ruolo> getRuoloById(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<HashMap<String, Object>> getRuoloById(@PathVariable(value = "id") Long id) {
 		
 		Ruolo ruolo = ruoService.getRuoloById(id);
 		
-		return new ResponseEntity<>(ruolo, HttpStatus.OK);
+		var assMap = serializer.serialize(format, ruolo);
+
+		return new ResponseEntity<>(assMap, HttpStatus.OK);
 		
 	}
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<Ruolo>> getAllRuoli(){
+	public ResponseEntity<List<HashMap<String, Object>>> getAllRuoli(){
 		List<Ruolo> ruoli = ruoService.getAllRuoli();
-		return new ResponseEntity<>(ruoli, HttpStatus.OK);
+		
+		var assMap = serializer.serializeAll(format, ruoli);
+
+		return new ResponseEntity<>(assMap, HttpStatus.OK);
 	}
 	
 	@PostMapping("")
-	public ResponseEntity<Ruolo> insertRuolo(@RequestBody Ruolo ruo){
+	public ResponseEntity<HashMap<String, Object>> insertRuolo(@RequestBody Ruolo ruo){
 		
 		ruo = ruoService.insertRuolo(ruo);
 		
-		return new ResponseEntity<>(ruo, HttpStatus.OK);
+		var assMap = serializer.serialize(format, ruo);
+
+		return new ResponseEntity<>(assMap, HttpStatus.OK);
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<Ruolo> updateRuolo(@RequestBody Ruolo ruo) {
+	public ResponseEntity<HashMap<String, Object>> updateRuolo(@RequestBody Ruolo ruo) {
 		
 		ruo = ruoService.updateRuolo(ruo);
 		
-		return new ResponseEntity<>(ruo, HttpStatus.OK);
+		var assMap = serializer.serialize(format, ruo);
+
+		return new ResponseEntity<>(assMap, HttpStatus.OK);
 		
 	}
 	

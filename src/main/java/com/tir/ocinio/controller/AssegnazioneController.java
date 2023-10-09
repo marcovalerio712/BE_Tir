@@ -30,7 +30,7 @@ public class AssegnazioneController extends Controller{
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<HashMap<String, Object>> getAssegnazione(@PathVariable("id") Long id){
+	public ResponseEntity<HashMap<String, Object>> getAssegnazioneById(@PathVariable("id") Long id){
 		var ass = assService.getAsssegnazioneById(id);			
 		var assMap = serializer.serialize(format, ass);
 		return ResponseEntity.ok(assMap);
