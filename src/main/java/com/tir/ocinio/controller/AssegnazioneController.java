@@ -19,43 +19,34 @@ import com.tir.ocinio.util.JsonSerializer;
 
 @RestController
 @RequestMapping("api/assegnazione")
-public class AssegnazioneController {
+public class AssegnazioneController extends Controller{
 
 	@Autowired
 	AssegnazioneService assService;
 	
-	JsonSerializer serializer = new JsonSerializer();
+	
+	public AssegnazioneController() {
+		this.format = "{id, dipendente:{id}, commessa:{id}, competenza, attivo}";
+	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<HashMap<String, Object>> getAssegnazione(@PathVariable("id") Long id){
-		var ass = assService.getAsssegnazioneById(id);
-		
-		String format = "{id, dipendente:{id}, commessa:{id}, competenza, attivo}";
-				
+		var ass = assService.getAsssegnazioneById(id);			
 		var assMap = serializer.serialize(format, ass);
-		
 		return ResponseEntity.ok(assMap);
 	}
 	
 	@PostMapping("")
 	public ResponseEntity<HashMap<String, Object>> inserisciAssegnazione(@RequestBody Assegnazione a){
 		a = assService.inserisciAssegnazione(a);
-		
-		String format = "{id, dipendente:{id}, commessa:{id}, competenza, attivo}";
-		
 		var assMap = serializer.serialize(format, a);
-		
 		return  ResponseEntity.ok(assMap);
 	}
 	
 	@PutMapping("")
 	public ResponseEntity<HashMap<String, Object>> updateAssegnazione(@RequestBody Assegnazione a){
 		a = assService.modificaAssegnazione(a);
-		
-		String format = "{id, competenza}";
-		
 		var assMap = serializer.serialize(format, a);
-		
 		return ResponseEntity.ok(assMap);
 	}
 	

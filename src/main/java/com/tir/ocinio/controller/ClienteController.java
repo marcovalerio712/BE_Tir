@@ -1,5 +1,6 @@
 package com.tir.ocinio.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tir.ocinio.entity.Cliente;
 import com.tir.ocinio.service.ClienteService;
+import com.tir.ocinio.util.JsonSerializer;
 
 @RestController
 @RequestMapping("api/cliente")
-public class ClienteController {
+public class ClienteController extends Controller{
 	
 	@Autowired
 	private ClienteService cliService;
+	
+	
+	public ClienteController() {
+		this.format = "{id, nome, partitaIva, telefono}";
+	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> getClienteById(@PathVariable(value = "id") Long id){
@@ -32,9 +39,10 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<Cliente>> getAllClienti(){
+	public ResponseEntity<List<HashMap<String, Object>>> getAllClienti(){
 		List<Cliente> clienti = cliService.getAllClienti();
-		return new ResponseEntity<>(clienti, HttpStatus.OK);
+		var cliList = serializer.serializeAll(format, clienti);
+		return new ResponseEntity<>(cliList, HttpStatus.OK);
 	}
 	
 	@GetMapping("/count")
@@ -45,19 +53,21 @@ public class ClienteController {
 	
 	
 	@PostMapping("")
-	public ResponseEntity<Cliente> insertCliente(@RequestBody Cliente cli){
+	public ResponseEntity<HashMap<String, Object>> insertCliente(@RequestBody Cliente cli){
 		cli = cliService.insertCliente(cli);
-		return new ResponseEntity<>(cli, HttpStatus.OK);
+		var cliMap = serializer.serialize(format, cli);
+		return new ResponseEntity<>(cliMap, HttpStatus.OK);
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cli){
+	public ResponseEntity<HashMap<String, Object>> updateCliente(@RequestBody Cliente cli){
 		cli = cliService.updateCliente(cli);
-		return new ResponseEntity<>(cli, HttpStatus.OK);		
+		var cliMap = serializer.serialize(format, cli);
+		return new ResponseEntity<>(cliMap, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteCliente(@PathVariable(value = "id") Long id){
+	public ResponseEntity<HashMap<String, Object>> deleteCliente(@PathVariable(value = "id") Long id){
 		cliService.deleteCliente(id);
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
