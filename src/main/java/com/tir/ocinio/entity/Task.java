@@ -9,17 +9,24 @@ public class Task {
 	private Date dataAssegnazione;
 	private Date dataConsegna;
 	private Assegnazione assegnazione;
+	private Long durata;
 
 	public Task() {}
-
-	public Task(String descrizione, String nome, Date dataAssegnazione, Date dataConsegna,
-			Dipendente dipendente, Commessa commessa) {
+	
+	public Task(Long id, String descrizione, String nome, Date dataAssegnazione, Date dataConsegna,
+			Assegnazione assegnazione, Long durata) {
+		super();
+		this.id = id;
 		this.descrizione = descrizione;
 		this.nome = nome;
 		this.dataAssegnazione = dataAssegnazione;
 		this.dataConsegna = dataConsegna;
+		this.assegnazione = assegnazione;
+		this.durata = durata;
 	}
-	
+
+
+
 	public Task(Long id) {
 		this.id = id;
 	}
@@ -84,11 +91,22 @@ public class Task {
 		this.assegnazione = assegnazione;
 	}
 
+	public Long getDurata() {
+		return durata;
+	}
+
+	public void setDurata(Long durata) {
+		this.durata = durata;
+	}
+
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", descrizione=" + descrizione + ", nome=" + nome + ", data_assegnazione="
-				+ dataAssegnazione + ", data_consegna=" + dataConsegna + ", assegnazione=" + assegnazione + "]";
+		return "Task [id=" + id + ", descrizione=" + descrizione + ", nome=" + nome + ", dataAssegnazione="
+				+ dataAssegnazione + ", dataConsegna=" + dataConsegna + ", assegnazione=" + assegnazione + ", durata="
+				+ durata + "]";
 	}
+
+	
 	
 	
 	

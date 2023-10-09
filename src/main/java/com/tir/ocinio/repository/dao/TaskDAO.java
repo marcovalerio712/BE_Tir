@@ -1,9 +1,11 @@
 package com.tir.ocinio.repository.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import com.tir.ocinio.entity.Task;
@@ -38,11 +40,22 @@ public class TaskDAO implements DAO<Task> {
 	
 	}
 
+	
 	@Override
 	public Task insert(Task t) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Task newTask = new Task();
+		
+		var function = new SimpleJdbcCall(template).withCatalogName("GRUPPO_1")
+				.withFunctionName("F_INSERT_TASK");
+		
+		var newID = function.executeFunction(BigDecimal.class, t.getAssegnazione().getId(), t.getNome(), t.getDescrizione(), t.getDurata()).longValue();
+		
+		newTask = getById(newID);
+		
+		return newTask;
 	}
+	
 
 	@Override
 	public void delete(Long id) {
@@ -52,8 +65,13 @@ public class TaskDAO implements DAO<Task> {
 
 	@Override
 	public Task update(Task t) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		var procedure = new SimpleJdbcCall(template).withCatalogName("GRUPPO_1")
+				.withProcedureName("P_UPDATE_TASK");
+		
+		procedure.execute(t.getId(), t.getNome(), t.getDescrizione(), t.getDataConsegna());
+		
+		return getById(t.getId());
 	}
 	
 	

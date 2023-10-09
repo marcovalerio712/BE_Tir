@@ -1,5 +1,6 @@
 package com.tir.ocinio.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,19 @@ public class TaskController extends Controller{
 		var counterTask = tasService.getCountTask();
 		return new ResponseEntity<>(counterTask, HttpStatus.OK);
 	}
+	
+	@PostMapping("")
+	public ResponseEntity<HashMap<String, Object>> inserisciTask(@RequestBody Task t){
+		t = tasService.insertTask(t);
+		var tasMap = serializer.serialize(format, t);
+		return ResponseEntity.ok(tasMap);
+	}
+	
+	@PutMapping("")
+	public ResponseEntity<HashMap<String, Object>> modificaTask(@RequestBody Task t){
+		t = tasService.updateTask(t);
+		var tasMap = serializer.serialize(format, t);
+		return ResponseEntity.ok(tasMap); 
+	}
+	
 }

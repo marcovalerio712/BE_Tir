@@ -34,4 +34,14 @@ public class TaskService {
 		return counterTask;
 		
 	}
+	
+	public Task insertTask(Task t) {
+		var task = tasDao.insert(t);
+		return task;
+	}
+	
+	public Task updateTask(Task t) {
+		var task = tasDao.update(t);
+		return task;
+	}
 }
