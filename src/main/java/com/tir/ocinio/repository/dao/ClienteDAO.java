@@ -72,7 +72,7 @@ public class ClienteDAO implements DAO<Cliente>{
 				withCatalogName("GRUPPO_1").
 				withProcedureName("P_UPDATE_CLIENTE");
 
-		procedure.execute(t.getId(), t.getNome(), t.getPartitaIva(), t.getTelefono());
+		procedure.execute(t.getId(), t.getTelefono());
 
 		return getById(t.getId());
 	}
