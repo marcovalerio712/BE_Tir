@@ -47,8 +47,6 @@ public class RuoloDAO implements DAO<Ruolo>{
 	@Override
 	public Ruolo insert(Ruolo t) {
 
-		Ruolo newRuolo = null;
-
 		var function = new SimpleJdbcCall(template).
 				withCatalogName("GRUPPO_2").
 				withFunctionName("F_INSERT_RUOLI");

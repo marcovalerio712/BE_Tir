@@ -42,7 +42,6 @@ public class DipendenteDAO implements DAO<Dipendente>{
 
 	@Override
 	public Dipendente insert(Dipendente t) {
-		Dipendente newDipendente = null;
 		
 		var function = new SimpleJdbcCall(template).
 							withCatalogName("GRUPPO_1").

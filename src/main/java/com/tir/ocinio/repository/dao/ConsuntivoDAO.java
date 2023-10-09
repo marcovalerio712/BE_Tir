@@ -42,8 +42,6 @@ public class ConsuntivoDAO implements DAO<Consuntivo>{
 	@Override
 	public Consuntivo insert(Consuntivo t) {
 		
-		Consuntivo newConsuntivo = null;
-		
 		var function = new SimpleJdbcCall(template).
 				withCatalogName("GRUPPO_2").
 				withFunctionName("F_INSERT_CONSUNTIVI");

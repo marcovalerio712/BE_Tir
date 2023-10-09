@@ -2,16 +2,10 @@ package com.tir.ocinio.controller;
 
 import java.util.HashMap;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.tir.ocinio.entity.Dipendente;
 import com.tir.ocinio.service.DipendenteService;
@@ -24,17 +18,17 @@ public class DipendenteController extends Controller{
 	private DipendenteService dipService;
 	
 	public DipendenteController() {
-		this.format = "{id,nome,cognome,cf,email,telefono,ruolo:{id},registrato,attivo}";
+		this.format = "{id, nome, cognome,cf,email,telefono,ruolo:{id},registrato,attivo}";
 	}
 	@GetMapping("/all")
-	public ResponseEntity<HashMap<String, Object>> getAllDipendenti() {
+	public ResponseEntity<List<HashMap<String, Object>>> getAllDipendenti() {
 		var all = dipService.getAllDipendenti();
-		var allMap = serializer.serialize(format, all);
+		var allMap = serializer.serializeAll(format, all);
 		return ResponseEntity.ok(allMap);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<HashMap<String, Object>> getDipendente(@PathVariable("id") Long id) {
+	public ResponseEntity<HashMap<String, Object>> getDipendenteById(@PathVariable("id") Long id) {
 		var dip = dipService.getDipendenteById(id);
 		var getMap = serializer.serialize(format, dip);
 		return ResponseEntity.ok(getMap);
