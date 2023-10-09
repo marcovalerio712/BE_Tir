@@ -45,7 +45,7 @@ public class CommessaDAO implements DAO<Commessa> {
 
 		var newId = function
 				.executeFunction(BigDecimal.class, t.getTipo(), t.getDurata(), t.getDescrizione(),
-						t.getImportoContratto(), t.getDataInizio(), t.getDataFine(), t.getCliente(), t.isAttivo())
+						t.getImportoContratto(), t.getDataInizio(), t.getDataFine(), t.getCliente(), t.getAttivo())
 				.longValue();
 		// metodo della classe BidDecimal che ritorna il corrispettivo valore messo in
 		// una variabile di tipo
@@ -70,7 +70,7 @@ public class CommessaDAO implements DAO<Commessa> {
 				.withProcedureName("P_UPDATE_COMMESSE");
 
 		procedure.execute(t.getId(), t.getTipo(), t.getDurata(), t.getDescrizione(), t.getImportoContratto(), t.getCliente(),
-				t.getDataInizio(), t.getDataFine(),t.isAttivo());
+				t.getDataInizio(), t.getDataFine(),t.getAttivo());
 
 		return getById(t.getId());
 

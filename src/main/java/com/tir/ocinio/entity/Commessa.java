@@ -98,7 +98,7 @@ public class Commessa {
 		this.cliente = cliente;
 	}
 	
-	public boolean isAttivo() {
+	public boolean getAttivo() {
 		return attivo;
 	}
 
