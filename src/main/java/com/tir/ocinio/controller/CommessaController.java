@@ -17,7 +17,7 @@ public class CommessaController extends Controller{
 	private CommessaService comService;
 	
 	public CommessaController() {
-		format = "{id, tipo, durata, descrizione, importoContratto, dataInizio, dataFine, cliente:{id}, attivo}";
+		format = "{id, tipo, durata, descrizione, importoContratto, dataInizio, dataFine, cliente:{id, nome}, attivo}";
 	}
 
 	@GetMapping("/{id}")
