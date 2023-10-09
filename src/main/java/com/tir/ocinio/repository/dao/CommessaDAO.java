@@ -10,7 +10,6 @@ import com.tir.ocinio.entity.Commessa;
 import com.tir.ocinio.repository.mapper.CommessaRowMapper;
 import com.tir.ocinio.repository.query.CommessaQuery;
 
-
 @Repository
 public class CommessaDAO implements DAO<Commessa> {
 
@@ -41,29 +40,40 @@ public class CommessaDAO implements DAO<Commessa> {
 	@Override
 	public Commessa insert(Commessa t) {
 		Commessa newCommessa = null;
-		
-		var function = new SimpleJdbcCall(template).
-							withCatalogName("GRUPPO_3").
-							withFunctionName("F_INSERT_COMMESSE");
-		
-		var newId = function.executeFunction(BigDecimal.class, t.getTipo(), t.getDurata(), t.getDescrizione(), t.getImportoContratto(), t.getDataInizio(), t.getDataFine(), t.getCliente(), t.isAttivo()).longValue(); 
-		//metodo della classe BidDecimal che ritorna il corrispettivo valore messo in una variabile di tipo
-		
+
+		var function = new SimpleJdbcCall(template).withCatalogName("GRUPPO_3").withFunctionName("F_INSERT_COMMESSE");
+
+		var newId = function
+				.executeFunction(BigDecimal.class, t.getTipo(), t.getDurata(), t.getDescrizione(),
+						t.getImportoContratto(), t.getDataInizio(), t.getDataFine(), t.getCliente(), t.isAttivo())
+				.longValue();
+		// metodo della classe BidDecimal che ritorna il corrispettivo valore messo in
+		// una variabile di tipo
+
 		newCommessa = getById(newId);
-		
+
 		return newCommessa;
 	}
 
 	@Override
 	public void delete(Long id) {
-		// vuoto
-		
+		var procedure = new SimpleJdbcCall(template).
+				withCatalogName("GRUPPO_3").
+				withProcedureName("P_DELETE_COMMESSE");
+
+			procedure.execute(id);
 	}
 
 	@Override
 	public Commessa update(Commessa t) {
-		// TODO Auto-generated method stub
-		return null;
+		var procedure = new SimpleJdbcCall(template).withCatalogName("GRUPPO_3")
+				.withProcedureName("P_UPDATE_COMMESSE");
+
+		procedure.execute(t.getId(), t.getTipo(), t.getDurata(), t.getDescrizione(), t.getImportoContratto(), t.getCliente(),
+				t.getDataInizio(), t.getDataFine(),t.isAttivo());
+
+		return getById(t.getId());
+
 	}
 
 }

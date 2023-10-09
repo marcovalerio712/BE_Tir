@@ -37,4 +37,11 @@ public class CommessaService {
 	public Commessa insertCommessa(Commessa com) {
 		return comDao.insert(com);
 	}
+	
+	public Commessa updateCommessa(Commessa com) {
+		return comDao.update(com);
+	}
+	public void deleteCommessa(Long id) {
+		comDao.delete(id);
+	}
 }

@@ -2,12 +2,10 @@ package com.tir.ocinio.controller;
 
 import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.tir.ocinio.entity.Commessa;
 import com.tir.ocinio.service.CommessaService;
 
@@ -48,5 +46,17 @@ public class CommessaController extends Controller{
 		var comMap = serializer.serialize(format, com);
 		return new ResponseEntity<>(comMap, HttpStatus.OK);
 	}
-
+	
+	@PutMapping("")
+	public ResponseEntity<HashMap<String, Object>> updateCommessa(@RequestBody Commessa com) {
+		 var Ucom = comService.updateCommessa(com);
+		var upMap = serializer.serialize(format, Ucom);
+		return ResponseEntity.ok(upMap);
+	}
+	
+	@DeleteMapping("")
+	public ResponseEntity<Object> deleteCommessa(@RequestBody Long id) {
+		 comService.deleteCommessa(id);
+		return ResponseEntity.ok(null);
+	}
 }
