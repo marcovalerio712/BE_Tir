@@ -38,6 +38,13 @@ public class ConsuntivoController extends Controller{
 		return ResponseEntity.ok(allMap);
 	}
 	
+	@GetMapping("/my")
+	public ResponseEntity<HashMap<String, Object>> getConsuntivoByLoggedUser(){
+		List<Consuntivo> consuntivi = conService.getAllConsuntivi();
+		var allMap = serializer.serialize(format, consuntivi);
+		return ResponseEntity.ok(allMap);
+	}
+	
 	@GetMapping("/count")
 	public ResponseEntity<Integer> getCountConsuntivi(){
 		var counterConsuntivi = conService.getCountConsuntivi();

@@ -48,6 +48,7 @@ public class JsonSerializer {
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
+			System.out.println("Metodo non trovato: " + methodName);
 			e.printStackTrace();
 		}
 		return method;

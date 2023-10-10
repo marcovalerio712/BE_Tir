@@ -28,7 +28,7 @@ public class DipendenteDAO implements DAO<Dipendente>{
 
 	@Override
 	public List<Dipendente> getAll() {
-		String query = DipendenteQuery.allDipendenti;
+		String query = DipendenteQuery.allDipendentiOrdered;
 		var dipendenti = template.query(query, new DipendenteRowMapper());
 		return dipendenti;
 	}
