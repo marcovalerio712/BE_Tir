@@ -59,8 +59,11 @@ public class TaskDAO implements DAO<Task> {
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		
+		var procedure = new SimpleJdbcCall(template)
+								.withCatalogName("GRUPPO_1")
+								.withProcedureName("P_DELETE_TASK");
+		procedure.execute(id);
 	}
 
 	@Override

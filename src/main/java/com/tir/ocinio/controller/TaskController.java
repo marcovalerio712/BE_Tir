@@ -54,4 +54,11 @@ public class TaskController extends Controller{
 		return ResponseEntity.ok(tasMap); 
 	}
 	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Object> eliminaTask(@PathVariable("id")Long id){
+		tasService.deleteTask(id);
+		return ResponseEntity.ok(null);
+	}
+	
+	
 }

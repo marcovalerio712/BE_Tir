@@ -44,4 +44,8 @@ public class TaskService {
 		var task = tasDao.update(t);
 		return task;
 	}
+	
+	public void deleteTask(Long id_task) {
+		tasDao.delete(id_task);
+	}
 }
