@@ -24,6 +24,10 @@ public class AssegnazioneService {
 		return assDao.getAll();
 	}
 	
+	public List<Assegnazione> getAllAssegnazioniAttive(){
+		return assDao.getAllAttive();
+	}
+	
 	public List<Assegnazione> getAssegnazioneByIdDipendente(Long id_dip) {
 		return assDao.getAllAssById_Dip(id_dip);
 	}
