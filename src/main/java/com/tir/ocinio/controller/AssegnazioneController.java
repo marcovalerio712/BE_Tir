@@ -31,17 +31,17 @@ public class AssegnazioneController extends Controller{
 	}
 	
 	@GetMapping("/com/{id}")
-	public ResponseEntity<HashMap<String, Object>> getAssegnazioneByIdCom(@PathVariable("id") Long id_com){
-		var ass = assService.getAssegnazioneByIdCommessa(id_com);			
-		var assMap = serializer.serialize(format, ass);
-		return ResponseEntity.ok(assMap);
+	public ResponseEntity<List<HashMap<String, Object>>> getAssegnazioneByIdCom(@PathVariable("id") Long id_com){
+		List<Assegnazione> assegnazione = assService.getAssegnazioneByIdCommessa(id_com);
+		var assegnazioneList = serializer.serializeAll(format, assegnazione);
+		return new ResponseEntity<>(assegnazioneList, HttpStatus.OK);
 	}
 	
 	@GetMapping("/dip/{id}")
-	public ResponseEntity<HashMap<String, Object>> getAssegnazioneByIdDip(@PathVariable("id") Long id_dip){
-		var ass = assService.getAssegnazioneByIdDipendente(id_dip);			
-		var assMap = serializer.serialize(format, ass);
-		return ResponseEntity.ok(assMap);
+	public ResponseEntity<List<HashMap<String, Object>>> getAssegnazioneByIdDip(@PathVariable("id") Long id_dip){
+		List<Assegnazione> assegnazione = assService.getAssegnazioneByIdDipendente(id_dip);
+		var assegnazioneList = serializer.serializeAll(format, assegnazione);
+		return new ResponseEntity<>(assegnazioneList, HttpStatus.OK);
 	}
 	
 	@GetMapping("/all")
