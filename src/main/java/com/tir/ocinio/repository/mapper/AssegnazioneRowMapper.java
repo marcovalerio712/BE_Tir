@@ -19,6 +19,9 @@ public class AssegnazioneRowMapper implements RowMapper<Assegnazione>{
 		var dipendente = new Dipendente(rs.getLong("ass_id_dipendente"));
 		var commessa = new Commessa(rs.getLong("ass_id_commessa"));
 		
+		dipendente.setNome(rs.getString("dip_nome"));
+		dipendente.setCognome(rs.getString("dip_cognome"));
+		
 		assegnazione.setDipendente(dipendente);
 		assegnazione.setCommessa(commessa);
 		assegnazione.setCompetenza(rs.getLong("ass_competenza"));

@@ -20,7 +20,7 @@ public class AssegnazioneController extends Controller{
 	
 	
 	public AssegnazioneController() {
-		this.format = "{id, dipendente:{id}, commessa:{id}, competenza, attivo}";
+		this.format = "{id, dipendente:{id, nome, cognome}, commessa:{id}, competenza, attivo}";
 	}
 	
 	@GetMapping("/{id}")
