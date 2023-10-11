@@ -42,7 +42,6 @@ public class DipendenteDAO implements DAO<Dipendente>{
 
 	@Override
 	public Dipendente insert(Dipendente t) {
-		Dipendente newDipendente = null;
 		
 		var function = new SimpleJdbcCall(template).
 							withCatalogName("GRUPPO_1").
@@ -96,5 +95,10 @@ public class DipendenteDAO implements DAO<Dipendente>{
 		procedure.execute(token);		
 	}
 	
+	public Dipendente findByEmail(String email) {
+		String query = String.format(DipendenteQuery.findByEmail, email);
+		var dipendente = template.queryForObject(query, new DipendenteRowMapper());
+		return dipendente;
+	}
 	
 }

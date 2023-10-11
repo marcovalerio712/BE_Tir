@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,12 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tir.ocinio.entity.Dipendente;
+import com.tir.ocinio.entity.JwtRequest;
+import com.tir.ocinio.entity.JwtResponse;
 import com.tir.ocinio.service.DipendenteService;
+import com.tir.ocinio.util.JwtUtil;
 
 @RestController
 @RequestMapping("api/dipendente")
 public class DipendenteController {
-
+	
+	@Autowired
+	private JwtUtil jwtUtil;
+		
 	@Autowired
 	private DipendenteService dipService;
 	
@@ -58,5 +65,18 @@ public class DipendenteController {
 		dipService.confirmRegistration(token);
 		return ResponseEntity.ok(null);
 	}
+//	@PostMapping("/authenticate")
+//	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+//
+//	    dipService.authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
+//
+//	    final UserDetails userDetails = dipService
+//	            .loadUserByUsername(authenticationRequest.getEmail());
+//
+//	    final String token = jwtUtil.generateToken(userDetails.getUsername());
+//
+//	    return ResponseEntity.ok(new JwtResponse(token));
+//	}
+
 	
 }

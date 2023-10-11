@@ -98,7 +98,7 @@ public class Dipendente {
 		this.telefono = telefono;
 	}
 
-	public Ruolo getRuolo() {
+	public  Ruolo getRuolo() {
 		return ruolo;
 	}
 
