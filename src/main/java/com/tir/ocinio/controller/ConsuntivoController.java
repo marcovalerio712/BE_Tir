@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tir.ocinio.entity.Cliente;
 import com.tir.ocinio.entity.Consuntivo;
 import com.tir.ocinio.service.ConsuntivoService;
-import com.tir.ocinio.service.DipendenteService;
+import com.tir.ocinio.service.DipendenteServiceImpl;
 
 @RestController
 @RequestMapping("api/consuntivo")
@@ -27,7 +27,7 @@ public class ConsuntivoController {
 	private ConsuntivoService conService;
 	
 	@Autowired
-	private DipendenteService dipService;
+	private DipendenteServiceImpl dipService;
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Consuntivo> getConsuntivoById(@PathVariable(value = "id") Long id) {
