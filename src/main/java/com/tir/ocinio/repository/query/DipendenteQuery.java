@@ -21,5 +21,5 @@ public static String findByEmail = "select d.id dip_id, d.nome dip_nome, d.cogno
 		   + "d.registrato dip_registrato, d.attivo dip_attivo, r.id ruo_id, r.anzianita ruo_anzianita, "
 		   + "r.compenso ruo_compenso "
 		   + "from Dipendenti d, Ruoli r "
-		   + "where d.id_ruolo = r.id(+) AND d.email = %d ";
+		   + "where d.id_ruolo = r.id(+) AND d.email = '%s' ";
 }

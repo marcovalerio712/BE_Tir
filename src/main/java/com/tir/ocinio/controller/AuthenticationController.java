@@ -23,7 +23,7 @@ public class AuthenticationController {
 	@Autowired
 	private DipendenteServiceImpl dipService;
 	
-	@PostMapping("")
+	@PostMapping("/register")
 	public ResponseEntity<Dipendente> registerDipendente(@RequestBody Dipendente dip){
 		dip = dipService.registerDipendente(dip);
 		return ResponseEntity.ok(dip);
@@ -38,6 +38,5 @@ public class AuthenticationController {
 	@PostMapping("/login")
 	public ResponseEntity<JwtAuthenticationResponse> login(@RequestBody Dipendente dip ){
 		return ResponseEntity.ok(authService.authenticate(dip));
-		
 	}
 }

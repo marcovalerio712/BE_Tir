@@ -1,20 +1,11 @@
 package com.tir.ocinio.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.tir.ocinio.entity.Dipendente;
-import com.tir.ocinio.entity.JwtAuthenticationResponse;
 import com.tir.ocinio.repository.dao.DAO;
 import com.tir.ocinio.repository.dao.DipendenteDAO;
 import com.tir.ocinio.util.EmailUtils;
