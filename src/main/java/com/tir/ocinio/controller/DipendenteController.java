@@ -18,7 +18,7 @@ public class DipendenteController extends Controller{
 	private DipendenteService dipService;
 	
 	public DipendenteController() {
-		this.format = "{id, nome, cognome,cf,email,telefono,ruolo:{id},registrato,attivo}";
+		this.format = "{id, nome, cognome,cf,email,telefono,ruolo:{id, anzianita},registrato,attivo}";
 	}
 	@GetMapping("/all")
 	public ResponseEntity<List<HashMap<String, Object>>> getAllDipendenti() {
