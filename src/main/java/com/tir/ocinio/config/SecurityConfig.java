@@ -38,8 +38,8 @@ public class SecurityConfig {
 	    .csrf(AbstractHttpConfigurer::disable)
 	    .authorizeHttpRequests(request ->
 	        request
-	           .requestMatchers("/**").permitAll()
-	           //.requestMatchers("/api/dipendente/**").hasAnyAuthority(Ruolo.SENIOR.name())
+	           .requestMatchers("api/auth/**").permitAll()
+	           .requestMatchers("/api/dipendente/**").hasAnyAuthority(Ruolo.SENIOR.name())
 	           .anyRequest().authenticated()
 	    )
 	    .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

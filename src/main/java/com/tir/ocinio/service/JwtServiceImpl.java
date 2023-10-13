@@ -1,4 +1,4 @@
-package com.tir.ocinio.service;
+	package com.tir.ocinio.service;
 
 import java.security.Key;
 import java.sql.Date;
@@ -20,7 +20,7 @@ public class JwtServiceImpl implements JWTService {
     public String generateToken(UserDetails user) {
         return Jwts.builder()
                 .setSubject(user.getUsername())
-                .setIssuedAt(new Date(0))
+                .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))  // 10 hours
                 .signWith(getSiginKey(), SignatureAlgorithm.HS256)
                 .compact();
@@ -38,7 +38,7 @@ public class JwtServiceImpl implements JWTService {
     }
 
     private Key getSiginKey() {
-    	byte[] key = Decoders.BASE64.decode("413F442842B4B6");
+    	byte[] key = Decoders.BASE64.decode("413F4428472B4B6250655368566D5970337336763979244226452948404D6351");
     	return Keys.hmacShaKeyFor(key);
     }
     

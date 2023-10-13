@@ -31,16 +31,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
-		final String authHeader = request.getHeader("authorization");
+		final String authHeader = request.getHeader("Authorization");
 		final String jwt;
 		final String email;
-		if(StringUtils.isEmpty(authHeader) || !org.apache.commons.lang.StringUtils.startsWith(authHeader, "Bearer")) {
+		if(org.apache.commons.lang.StringUtils.isEmpty(authHeader) || !org.apache.commons.lang.StringUtils.startsWith(authHeader, "Bearer")) {
 			filterChain.doFilter(request, response);
 			return;
 		}
 		jwt = authHeader.substring(7);
 		email = jwtService.extractUsername(jwt);
-		if(StringUtils.isNotEmpty(email) && SecurityContextHolder.getContext().getAuthentication() == null) {
+		if(org.apache.commons.lang.StringUtils.isNotEmpty(email) && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails user =  dipService.userDetailsService().loadUserByUsername(email);
 			if (jwtService.isTokenValid(jwt, user)) {
 				SecurityContext securityContext = SecurityContextHolder.createEmptyContext();

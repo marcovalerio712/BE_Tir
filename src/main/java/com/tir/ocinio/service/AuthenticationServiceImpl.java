@@ -25,8 +25,6 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 	@Autowired
 	private JWTService jwtService;
 	
-//	@Autowired
-//	private PasswordEncoder bc;
 
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -34,9 +32,9 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 	public JwtAuthenticationResponse authenticate(Dipendente dip) {
 		//var criptedP = bc.encode(dip.getPassword());
 		var email = dip.getEmail();
-		var dipendente = ((DipendenteDAO) dipDao).findByEmail(email);
 		//problema qua(authentication)
-		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, dipendente.getPassword(),dipendente.getAuthorities()));
+		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dip.getEmail(), dip.getPassword()));
+		var dipendente = ((DipendenteDAO) dipDao).findByEmail(email);
 		var jwt = jwtService.generateToken(dipendente);
 		var refreshToken = jwtService.generateRefreshToken(new HashMap<>(), dipendente);
 		JwtAuthenticationResponse jwtAuth = new JwtAuthenticationResponse();
