@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.tir.ocinio.entity.Dipendente;
 import com.tir.ocinio.repository.dao.DAO;
@@ -17,9 +19,11 @@ public class DipendenteServiceImpl implements DipendenteService {
 	private DAO<Dipendente> dipDao;
 
 
-
 	@Autowired
 	private EmailUtils mail;
+	
+	
+	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
 	public List<Dipendente> getAllDipendenti() {
@@ -62,6 +66,7 @@ public class DipendenteServiceImpl implements DipendenteService {
 	}
 
 	public Dipendente registerDipendente(Dipendente dip) {
+		dip.setPassword(passwordEncoder.encode(dip.getPassword()));
 		dip = dipDao.insert(dip);
 		sendRegistrationConfirm(dip);
 		return dip;
@@ -82,7 +87,6 @@ public class DipendenteServiceImpl implements DipendenteService {
 	public UserDetailsService userDetailsService() {
 
 		return new UserDetailsService() {
-
 			public UserDetails loadUserByUsername(String email) {
 				return ((DipendenteDAO) dipDao).findByEmail(email);
 			}

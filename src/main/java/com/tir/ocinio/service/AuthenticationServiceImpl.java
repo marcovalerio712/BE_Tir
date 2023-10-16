@@ -17,22 +17,19 @@ import com.tir.ocinio.repository.dao.DAO;
 import com.tir.ocinio.repository.dao.DipendenteDAO;
 
 @Service
-public class AuthenticationServiceImpl implements AuthenticationService{
+public class AuthenticationServiceImpl implements AuthenticationService {
 
 	@Autowired
 	private DAO<Dipendente> dipDao;
-	
+
 	@Autowired
 	private JWTService jwtService;
-	
 
 	@Autowired
 	AuthenticationManager authenticationManager;
-	
+
 	public JwtAuthenticationResponse authenticate(Dipendente dip) {
-		//var criptedP = bc.encode(dip.getPassword());
 		var email = dip.getEmail();
-		//problema qua(authentication)
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dip.getEmail(), dip.getPassword()));
 		var dipendente = ((DipendenteDAO) dipDao).findByEmail(email);
 		var jwt = jwtService.generateToken(dipendente);

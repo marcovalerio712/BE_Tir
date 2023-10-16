@@ -40,8 +40,7 @@ public class SecurityConfig {
 	        request
 	           .requestMatchers("api/auth/**").permitAll()
 	           .requestMatchers("/api/dipendente/**").hasAnyAuthority(Ruolo.SENIOR.name())
-	           .anyRequest().authenticated()
-	    )
+	           .anyRequest().authenticated())
 	    .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 	    .authenticationProvider(authenticationProvider())
 	    .addFilterBefore(auth, UsernamePasswordAuthenticationFilter.class);
@@ -52,7 +51,7 @@ public class SecurityConfig {
 	@Bean
 	AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-		authenticationProvider.setUserDetailsService( dipService.userDetailsService());
+		authenticationProvider.setUserDetailsService(dipService.userDetailsService());
 		authenticationProvider.setPasswordEncoder(PasswordEncoder());
 		return authenticationProvider;
 		
