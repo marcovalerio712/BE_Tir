@@ -39,7 +39,7 @@ public class SecurityConfig {
 	    .authorizeHttpRequests(request ->
 	        request
 	           .requestMatchers("api/auth/**").permitAll()
-	           .requestMatchers("/api/dipendente/**").hasAnyAuthority(Ruolo.SENIOR.name())
+	           .requestMatchers("/api/dipendente/all").hasAnyAuthority("Senior")
 	           .anyRequest().authenticated())
 	    .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 	    .authenticationProvider(authenticationProvider())
