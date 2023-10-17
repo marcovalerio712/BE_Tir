@@ -1,7 +1,6 @@
 package com.tir.ocinio.filters;
 
 import java.io.IOException;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -9,6 +8,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.tir.ocinio.service.DipendenteService;
@@ -18,7 +18,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+@Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	
 	@Autowired
@@ -44,7 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		jwt = authHeader.substring(7);
 		email = jwtService.extractUsername(jwt);
 		if(StringUtils.isNotEmpty(email) && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails user = dipService.loadUserByUsername(email);
+			UserDetails user = dipService.userDetailsService().loadUserByUsername(email);
 			
 			if(jwtService.isTokenValid(jwt, user)) {
 				//stiamo creando un context vuoto per ospitare l'utente singolo e lo stiamo facendo in modo esplicito in questa istruzione per evitare

@@ -11,12 +11,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.tir.ocinio.enumeration.Anzianita;
+import com.tir.ocinio.filters.JwtAuthenticationFilter;
 import com.tir.ocinio.service.DipendenteService;
 
 @Configuration
@@ -34,7 +36,7 @@ public class SecurityConfig {
 	
 	//
 	@Bean
-	SecurityFilterChain filterChain (HttpSecurity http){
+	SecurityFilterChain filterChain (HttpSecurity http) throws Exception{
 		//Cross Site Request Forgery -- attacco hacker che manda una richiesta con tutti 
 		//i dati, che però sta accedendo per conto di un altro pc e quindi disabilitandola evitiamo questo
 		http.csrf(AbstractHttpConfigurer::disable)
@@ -55,14 +57,14 @@ public class SecurityConfig {
 	@Bean
 	AuthenticationProvider authProvider () {
 		var authProvider = new DaoAuthenticationProvider();
-		authProvider.setUserDetailsService(dipService);
+		authProvider.setUserDetailsService(dipService.userDetailsService());
 		authProvider.setPasswordEncoder(passwordEncoder());
 		return authProvider;
 		
 	}
 	
 	@Bean
-	AuthenticationManager authManager (AuthenticationConfiguration config) {
+	AuthenticationManager authManager (AuthenticationConfiguration config) throws Exception {
 		return config.getAuthenticationManager();
 	}
 	
