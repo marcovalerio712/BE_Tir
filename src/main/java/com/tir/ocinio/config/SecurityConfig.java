@@ -3,14 +3,20 @@ package com.tir.ocinio.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.tir.ocinio.enumeration.Ruolo;
+import com.tir.ocinio.enumeration.Anzianita;
 import com.tir.ocinio.service.DipendenteService;
 
 @Configuration
@@ -24,7 +30,7 @@ public class SecurityConfig {
 	private JwtAuthenticationFilter auth; 
 	
 	@Autowired
-	private DipendenteService dipendente;
+	private DipendenteService dipService;
 	
 	//
 	@Bean
@@ -35,18 +41,35 @@ public class SecurityConfig {
 		.authorizeHttpRequests( request -> 
 			request				
 				.requestMatchers("api/auth/**").permitAll() //permettiamo tutte le richieste con tale path url
-				.requestMatchers("/api/**").hasAnyAuthority(Ruolo.HR.nome)
-				.requestMatchers("/api/task/**").hasAnyAuthority(Ruolo.SENIOR.nome)
+				.requestMatchers("/api/**").hasAnyAuthority(Anzianita.HR.nome)
+				.requestMatchers("/api/task/**").hasAnyAuthority(Anzianita.SENIOR.nome)
 				.anyRequest().authenticated())
 		.sessionManagement(manager -> 
 			manager
 			.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-			.authenticationProvider(authenticationProvider())
+			.authenticationProvider(authProvider())
 			.addFilterBefore(auth, UsernamePasswordAuthenticationFilter.class);
 		return http.build();		
 	}
 	
+	@Bean
+	AuthenticationProvider authProvider () {
+		var authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(dipService);
+		authProvider.setPasswordEncoder(passwordEncoder());
+		return authProvider;
+		
+	}
 	
+	@Bean
+	AuthenticationManager authManager (AuthenticationConfiguration config) {
+		return config.getAuthenticationManager();
+	}
+	
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	
 	
 	

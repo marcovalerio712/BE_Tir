@@ -1,11 +1,13 @@
 package com.tir.ocinio.entity;
 
+import com.tir.ocinio.enumeration.Anzianita;
+
 public class Ruolo{
 	private Long id;
 	private Float compenso;
-	private String anzianita;
+	private Anzianita anzianita;
 
-	public Ruolo(Float compenso, String anzianita) {
+	public Ruolo(Float compenso, Anzianita anzianita) {
 		this.compenso = compenso;
 		this.anzianita = anzianita;
 	}
@@ -34,11 +36,11 @@ public class Ruolo{
 		this.compenso = f;
 	}
 
-	public String getAnzianita() {
+	public Anzianita getAnzianita() {
 		return anzianita;
 	}
 
-	public void setAnzianita(String anzianita) {
+	public void setAnzianita(Anzianita anzianita) {
 		this.anzianita = anzianita;
 	}
 

@@ -1,12 +1,12 @@
 package com.tir.ocinio.enumeration;
 
-public enum Ruolo {
+public enum Anzianita {
 
 	JUNIOR("Junior"), MIDDLE("Middle"), SENIOR("Senior"), HR("HR");
 	
 	public final String nome;
 	
-	private Ruolo(String nome) {
+	private Anzianita(String nome) {
 		this.nome = nome;
 	}
 	

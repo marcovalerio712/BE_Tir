@@ -95,5 +95,13 @@ public class DipendenteDAO implements DAO<Dipendente>{
 		procedure.execute(token);		
 	}
 	
+	public Dipendente getByEmail (String email) {
+		
+		String query = String.format(DipendenteQuery.oneDipendenteByEmail, email);
+		var dipendente = template.queryForObject(query, new DipendenteRowMapper());
+		return dipendente;
+		
+	}
+	
 	
 }

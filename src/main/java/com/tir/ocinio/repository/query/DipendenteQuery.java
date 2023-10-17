@@ -17,4 +17,6 @@ public class DipendenteQuery {
 	
 	public static String tokenRegistrazione = "select token from token_registrazione "
 									        + "where id_dipendente = %d";
+	
+	public static String oneDipendenteByEmail = allDipendenti + " and d.email = %s";
 }

@@ -3,6 +3,9 @@ package com.tir.ocinio.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.tir.ocinio.entity.Dipendente;
@@ -11,7 +14,7 @@ import com.tir.ocinio.repository.dao.DipendenteDAO;
 import com.tir.ocinio.util.EmailUtils;
 
 @Service
-public class DipendenteService {
+public class DipendenteService implements UserDetailsService {
 
 	@Autowired
 	private DAO<Dipendente> dipDao;
@@ -73,6 +76,13 @@ public class DipendenteService {
 		
 		dipDao.delete(id);
 		
+	}
+
+	//il motivo per il casting dipDao a DipendenteDao è che dipDao è una reference a un DAO generico e quindi non contiene il metodo getByEmail
+	//per accedervi è necessario specificare che dipDao è un'istanza di DipendenteDAO
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return ((DipendenteDAO)dipDao).getByEmail(username);
 	}
 	
 }
