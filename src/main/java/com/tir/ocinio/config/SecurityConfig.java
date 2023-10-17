@@ -41,7 +41,7 @@ public class SecurityConfig {
 	           .requestMatchers("api/auth/**").permitAll()
 	           .requestMatchers("/api/dipendente/all").hasAnyAuthority("Senior")
 	           .anyRequest().authenticated())
-	    .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+	    .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
 	    .authenticationProvider(authenticationProvider())
 	    .addFilterBefore(auth, UsernamePasswordAuthenticationFilter.class);
 

@@ -39,4 +39,5 @@ public class AuthenticationController {
 	public ResponseEntity<JwtAuthenticationResponse> login(@RequestBody Dipendente dip ){
 		return ResponseEntity.ok(authService.authenticate(dip));
 	}
+	
 }

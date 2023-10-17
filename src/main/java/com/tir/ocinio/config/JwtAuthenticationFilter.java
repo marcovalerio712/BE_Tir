@@ -1,6 +1,5 @@
 package com.tir.ocinio.config;
 
-import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
@@ -9,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import com.tir.ocinio.service.AuthenticationServiceImpl;
 import com.tir.ocinio.service.DipendenteService;
 import com.tir.ocinio.service.JWTService;
 import jakarta.servlet.FilterChain;
