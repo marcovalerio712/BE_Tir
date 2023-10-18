@@ -48,7 +48,7 @@ public class SecurityConfig {
 				.anyRequest().authenticated())
 		.sessionManagement(manager -> 
 			manager
-			.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
+			.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
 			.authenticationProvider(authProvider())
 			.addFilterBefore(auth, UsernamePasswordAuthenticationFilter.class);
 		return http.build();		
