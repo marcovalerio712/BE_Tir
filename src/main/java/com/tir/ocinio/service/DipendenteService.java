@@ -15,7 +15,7 @@ import com.tir.ocinio.repository.dao.DipendenteDAO;
 import com.tir.ocinio.util.EmailUtils;
 
 @Service
-public class DipendenteService implements DipendenteServiceInterface {
+public class DipendenteService implements UserDetailsService {
 
 	@Autowired
 	private DAO<Dipendente> dipDao;
@@ -80,13 +80,8 @@ public class DipendenteService implements DipendenteServiceInterface {
 	}
 
 	@Override
-	public UserDetailsService userDetailsService() {
-
-		return new UserDetailsService() {
-			public UserDetails loadUserByUsername(String email) {
-				return ((DipendenteDAO) dipDao).getByEmail(email);
-			}
-		};
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return ((DipendenteDAO) dipDao).getByEmail(username);
 	}
 
 }

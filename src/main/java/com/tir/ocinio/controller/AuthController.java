@@ -21,9 +21,7 @@ public class AuthController {
 	
 	@PostMapping("/login")
 	private ResponseEntity<AuthenticationResponse> auth (@RequestBody Dipendente dip){
-		if(!dip.getRegistrato()) {
-			return throw new NonRegistratoException();
-		}
+		
 		return ResponseEntity.ok(auth.authenticate(dip));
 		
 	}

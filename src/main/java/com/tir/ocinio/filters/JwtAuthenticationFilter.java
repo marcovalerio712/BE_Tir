@@ -44,7 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		jwt = authHeader.substring(7);
 		email = jwtService.extractUsername(jwt);
 		if(StringUtils.isNotEmpty(email) && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails user = dipService.userDetailsService().loadUserByUsername(email);
+			UserDetails user = dipService.loadUserByUsername(email);
 			
 			if(jwtService.isTokenValid(jwt, user)) {
 				//stiamo creando un context vuoto per ospitare l'utente singolo e lo stiamo facendo in modo esplicito in questa istruzione per evitare

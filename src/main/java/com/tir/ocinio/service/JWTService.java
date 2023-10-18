@@ -60,7 +60,7 @@ public class JWTService {
 	}
 
 	private boolean isTokenExpired(String token) {
-		return extractClaim(token, Claims::getExpiration).before(new Date(0));
+		return extractClaim(token, Claims::getExpiration).before(new Date(System.currentTimeMillis()));
 	}
 
 //	private SecretKey generateEncodeKey() {
