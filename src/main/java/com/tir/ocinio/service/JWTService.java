@@ -1,9 +1,13 @@
 package com.tir.ocinio.service;
 
 import java.security.Key;
+import java.security.SecureRandom;
 import java.sql.Date;
 import java.util.Map;
 import java.util.function.Function;
+
+import javax.crypto.SecretKey;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
@@ -32,14 +36,14 @@ public class JWTService {
 				.signWith(getSiginKey(), SignatureAlgorithm.HS256).compact();
 	}
 
-//	private Key getSiginKey() {
-//		var key = generateEncodeKey();
-//		return key;
-//	}
 	private Key getSiginKey() {
-        byte[] key = Decoders.BASE64.decode("413F4428472B4B6250655368566D5970337336763979244226452948404D6351");
-        return Keys.hmacShaKeyFor(key);
-    }
+		var key = generateEncodeKey();
+		return key;
+	}
+//	private Key getSiginKey() {
+//        //byte[] key = Decoders.BASE64.decode("413F4428472B4B6250655368566D5970337336763979244226452948404D6351");
+//        return Keys.hmacShaKeyFor(key);
+//    }
 
 	private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
 		final Claims claims = extractAllClaim(token);
@@ -63,10 +67,9 @@ public class JWTService {
 		return extractClaim(token, Claims::getExpiration).before(new Date(System.currentTimeMillis()));
 	}
 
-//	private SecretKey generateEncodeKey() {
-//		byte[] randomKey = new byte[32];
-//		new SecureRandom().nextBytes(randomKey);
-//		return Keys.hmacShaKeyFor(randomKey);
-//	}
+	private SecretKey generateEncodeKey() {
+		byte[] randomKey = Decoders.BASE64.decode("3459794bdf726cb12128bc6e2345847f881097939042ccb2591b6dc604b8d68f");
+		return Keys.hmacShaKeyFor(randomKey);
+	}
 
 }
