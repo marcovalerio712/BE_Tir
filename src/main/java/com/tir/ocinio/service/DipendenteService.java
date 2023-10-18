@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tir.ocinio.entity.Dipendente;
@@ -63,6 +64,7 @@ public class DipendenteService implements UserDetailsService {
 	}
 
 	public Dipendente registerDipendente(Dipendente dip) {
+		dip.setPassword (new BCryptPasswordEncoder().encode(dip.getPassword()));
 		dip = dipDao.insert(dip);
 		sendRegistrationConfirm(dip);
 		return dip;

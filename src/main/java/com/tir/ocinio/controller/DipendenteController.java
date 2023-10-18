@@ -34,12 +34,7 @@ public class DipendenteController extends Controller{
 		return ResponseEntity.ok(getMap);
 	}
 	
-	@PostMapping("")
-	public ResponseEntity<HashMap<String, Object>> registerDipendente(@RequestBody Dipendente dip){
-		dip = dipService.registerDipendente(dip);
-		var regMap = serializer.serialize(format, dip);
-		return ResponseEntity.ok(regMap);
-	}
+
 	
 	@PutMapping("")
 	public ResponseEntity<HashMap<String, Object>> updateDipendente(@RequestBody Dipendente dip) {
@@ -54,10 +49,5 @@ public class DipendenteController extends Controller{
 		return ResponseEntity.ok(null);
 	}
 	
-	@PostMapping("/confirm/{token}")
-	public ResponseEntity<Object> confirmRegistration(@PathVariable("token") String token){
-		dipService.confirmRegistration(token);
-		return ResponseEntity.ok(null);
-	}
-	
+
 }

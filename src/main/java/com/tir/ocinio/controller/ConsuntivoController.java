@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import com.tir.ocinio.entity.Consuntivo;
@@ -21,7 +22,7 @@ public class ConsuntivoController extends Controller{
 
 	
 	public ConsuntivoController() {
-		this.format = "{id,orario_inizio,orario_fine,tipologia,id_dipendente:{id}}";
+		this.format = "{id,orarioInizio,orarioFine,tipologia,dipendente:{id}}";
 	}
 	
 	@GetMapping("/{id}")
@@ -37,11 +38,12 @@ public class ConsuntivoController extends Controller{
 		var allMap = serializer.serialize(format, consuntivi);
 		return ResponseEntity.ok(allMap);
 	}
-	
+	//prova bisogna cambiare
 	@GetMapping("/my")
 	public ResponseEntity<HashMap<String, Object>> getConsuntivoByLoggedUser(){
+		var dip = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Consuntivo> consuntivi = conService.getAllConsuntivi();
-		var allMap = serializer.serialize(format, consuntivi);
+		var allMap = serializer.serialize("{nome,cognome,telefono}", dip);
 		return ResponseEntity.ok(allMap);
 	}
 	
