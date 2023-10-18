@@ -44,7 +44,7 @@ public class CommessaDAO implements DAO<Commessa> {
 		var function = new SimpleJdbcCall(template).withCatalogName("GRUPPO_3").withFunctionName("F_INSERT_COMMESSE");
 
 		var newId = function
-				.executeFunction(BigDecimal.class, t.getTipo(), t.getDurata(), t.getDescrizione(),
+				.executeFunction(BigDecimal.class, t.getTipo(), t.getDescrizione(),
 						t.getImportoContratto(), t.getDataInizio(), t.getDataFine(), t.getCliente(), t.getAttivo())
 				.longValue();
 		// metodo della classe BidDecimal che ritorna il corrispettivo valore messo in

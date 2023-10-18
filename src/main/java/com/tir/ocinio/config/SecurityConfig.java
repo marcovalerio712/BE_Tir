@@ -42,10 +42,11 @@ public class SecurityConfig {
 		http.csrf(AbstractHttpConfigurer::disable)
 		.authorizeHttpRequests( request -> 
 			request				
-				.requestMatchers("api/auth/**").permitAll() //permettiamo tutte le richieste con tale path url
-				.requestMatchers("/api/**").hasAnyAuthority(Anzianita.HR.nome)
-				.requestMatchers("/api/task/**").hasAnyAuthority(Anzianita.SENIOR.nome)
-				.anyRequest().authenticated())
+				.requestMatchers("api/**").permitAll() //permettiamo tutte le richieste con tale path url
+				//.requestMatchers("/api/**").hasAnyAuthority(Anzianita.HR.nome)
+				//.requestMatchers("/api/task/**").hasAnyAuthority(Anzianita.SENIOR.nome)
+				//.anyRequest().authenticated()
+				)
 		.sessionManagement(manager -> 
 			manager
 			.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
