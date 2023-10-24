@@ -36,7 +36,7 @@ public class AuthController extends Controller {
 		return ResponseEntity.ok(auth.authenticate(dip));
 		
 	}
-	@PostMapping("")
+	@PostMapping("/registrazione")
 	public ResponseEntity<HashMap<String, Object>> registerDipendente(@RequestBody Dipendente dip){
 		dip = dipService.registerDipendente(dip);
 		var regMap = serializer.serialize(format, dip);

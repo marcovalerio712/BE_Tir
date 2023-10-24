@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import com.tir.ocinio.entity.Consuntivo;
@@ -34,18 +32,18 @@ public class ConsuntivoController extends Controller{
 	}		
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<HashMap<String, Object>>> getAllConsuntivi(){
+	public ResponseEntity<HashMap<String, Object>> getAllConsuntivi(){
 		List<Consuntivo> consuntivi = conService.getAllConsuntivi();
-		var allMap = serializer.serializeAll(format, consuntivi);
+		var allMap = serializer.serialize(format, consuntivi);
 		return ResponseEntity.ok(allMap);
 	}
-	@GetMapping("/my")
-	public ResponseEntity<List<HashMap<String, Object>>> getConsuntivoByLoggedUser(){
 	
-		List<Consuntivo> consuntivi = conService.GetMyConsuntivi();
-		var allMap = serializer.serializeAll(format, consuntivi);
+	/*@GetMapping("/my")
+	public ResponseEntity<HashMap<String, Object>> getConsuntivoByLoggedUser(){
+		List<Consuntivo> consuntivi = conService.getAllConsuntivi();
+		var allMap = serializer.serialize(format, consuntivi);
 		return ResponseEntity.ok(allMap);
-	}
+	}*/
 	
 	@GetMapping("/count")
 	public ResponseEntity<Integer> getCountConsuntivi(){
