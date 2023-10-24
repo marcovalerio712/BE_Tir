@@ -45,6 +45,7 @@ public class SecurityConfig {
 				.requestMatchers("api/auth/**").permitAll() //permettiamo tutte le richieste con tale path url
 				.requestMatchers("/api/**").hasAnyAuthority(Anzianita.HR.nome)
 				.requestMatchers("/api/task/**").hasAnyAuthority(Anzianita.SENIOR.nome)
+				.requestMatchers("/api/consuntivi/**").hasAnyAuthority(Anzianita.SENIOR.nome)
 				.anyRequest().authenticated())
 		.sessionManagement(manager -> 
 			manager
