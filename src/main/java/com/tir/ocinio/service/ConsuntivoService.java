@@ -3,6 +3,7 @@ package com.tir.ocinio.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.tir.ocinio.entity.Consuntivo;
@@ -29,6 +30,7 @@ public class ConsuntivoService {
 	
 	
 	public List<Consuntivo> getAllConsuntivi(){
+		//var dip = ((Dipendente)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		
 		var consuntivi = conDao.getAll();
 		
@@ -56,6 +58,19 @@ public class ConsuntivoService {
 	
 	public void deleteConsuntivo(Long id) {
 		conDao.delete(id);
+	}
+	public List<Consuntivo> GetMyConsuntivi(){
+		var dip = ((Dipendente)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		
+		var consuntivi = conDao.getAll();
+		
+		for(var con : consuntivi) {
+			
+			con.setDipendente(dipDao.getById(dip.getId()));
+			
+		}
+		
+		return consuntivi;
 	}
 	
 }
