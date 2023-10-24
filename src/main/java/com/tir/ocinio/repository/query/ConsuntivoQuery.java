@@ -11,4 +11,11 @@ public class ConsuntivoQuery {
 	public static String oneConsuntivo = allConsuntivi + " and c.id = %d";
 	
 	public static String countConsuntivi = "select count(*) from consuntivi";
+	
+	public static String myConsuntivi = "select c.id con_id, c.orario_inizio con_orario_inizio, c.orario_fine con_orario_fine, "
+							+ "c.tipologia con_tipologia, c.id_dipendente con_id_dipendente "
+							+ "from Consuntivi c "
+							+ "where c.id_dipendente = %d";
+	  
+	
 }

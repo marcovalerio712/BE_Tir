@@ -72,5 +72,11 @@ public class ConsuntivoDAO implements DAO<Consuntivo>{
 
 		return getById(t.getId());
 	}
+	
+	public List<Consuntivo> getByDipendente(Long id){
+		String query = String.format(ConsuntivoQuery.myConsuntivi, id);
+		var consuntivi = template.query(query, new ConsuntivoRowMapper());
+		return consuntivi;
+	}
 
 }

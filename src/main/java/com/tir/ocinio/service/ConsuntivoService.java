@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.tir.ocinio.entity.Consuntivo;
 import com.tir.ocinio.entity.Dipendente;
+import com.tir.ocinio.repository.dao.ConsuntivoDAO;
 import com.tir.ocinio.repository.dao.DAO;
 
 @Service
@@ -59,16 +60,12 @@ public class ConsuntivoService {
 	public void deleteConsuntivo(Long id) {
 		conDao.delete(id);
 	}
+	
+	//sezione dipendente 
 	public List<Consuntivo> GetMyConsuntivi(){
 		var dip = ((Dipendente)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		
-		var consuntivi = conDao.getAll();
-		
-		for(var con : consuntivi) {
-			
-			con.setDipendente(dipDao.getById(dip.getId()));
-			
-		}
+		var consuntivi = ((ConsuntivoDAO)conDao).getByDipendente(dip.getId());
 		
 		return consuntivi;
 	}

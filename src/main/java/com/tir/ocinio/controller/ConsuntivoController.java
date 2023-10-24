@@ -34,17 +34,16 @@ public class ConsuntivoController extends Controller{
 	}		
 	
 	@GetMapping("/all")
-	public ResponseEntity<HashMap<String, Object>> getAllConsuntivi(){
+	public ResponseEntity<List<HashMap<String, Object>>> getAllConsuntivi(){
 		List<Consuntivo> consuntivi = conService.getAllConsuntivi();
-		var allMap = serializer.serialize(format, consuntivi);
+		var allMap = serializer.serializeAll(format, consuntivi);
 		return ResponseEntity.ok(allMap);
 	}
-	//prova bisogna cambiare
 	@GetMapping("/my")
-	public ResponseEntity<HashMap<String, Object>> getConsuntivoByLoggedUser(){
+	public ResponseEntity<List<HashMap<String, Object>>> getConsuntivoByLoggedUser(){
 	
 		List<Consuntivo> consuntivi = conService.GetMyConsuntivi();
-		var allMap = serializer.serialize(format, consuntivi);
+		var allMap = serializer.serializeAll(format, consuntivi);
 		return ResponseEntity.ok(allMap);
 	}
 	
