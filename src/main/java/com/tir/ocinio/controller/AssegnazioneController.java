@@ -6,10 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import com.tir.ocinio.entity.Assegnazione;
+import com.tir.ocinio.enumeration.Anzianita;
 import com.tir.ocinio.service.AssegnazioneService;
+
+import jakarta.annotation.security.RolesAllowed;
 
 @RestController
 @RequestMapping("api/assegnazione")
@@ -45,6 +49,7 @@ public class AssegnazioneController extends Controller{
 	}
 	
 	@GetMapping("/all")
+	@RolesAllowed("HR")
 	public ResponseEntity<List<HashMap<String, Object>>> getAllAssegnazioni() {
 		List<Assegnazione> assegnazione = assService.getAllAssegnazioni();
 		var assegnazioneList = serializer.serializeAll(format, assegnazione);
