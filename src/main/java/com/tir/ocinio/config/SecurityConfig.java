@@ -51,9 +51,10 @@ public class SecurityConfig {
 						.authorizeHttpRequests( request -> 
 						request				
 							.requestMatchers("api/auth/**").permitAll() //permettiamo tutte le richieste con tale path url
-							.requestMatchers("/api/**").hasAnyAuthority(Anzianita.HR.nome)
+							.requestMatchers("api/dipendente/confirm/**").permitAll()
 							.requestMatchers("/api/task/**").hasAnyAuthority(Anzianita.SENIOR.nome)
-							.requestMatchers("/api/consuntivi/**").hasAnyAuthority(Anzianita.SENIOR.nome)
+							.requestMatchers("/api/consuntivo/**").permitAll()
+							.requestMatchers("/api/**").hasAnyAuthority(Anzianita.HR.nome)
 							.anyRequest().authenticated());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
