@@ -23,7 +23,7 @@ public class ConsuntivoController extends Controller{
 
 	
 	public ConsuntivoController() {
-		this.format = "{id,orarioInizio,orarioFine,tipologia,dipendente:{id}}";
+		this.format = "{id,orarioInizio,orarioFine,tipologia,dipendente:{id,nome}}";
 	}
 	
 	@GetMapping("/{id}")
@@ -53,7 +53,7 @@ public class ConsuntivoController extends Controller{
 		return new ResponseEntity<>(counterConsuntivi, HttpStatus.OK);
 	}
 	
-	@PostMapping("")
+	@PostMapping("/insert")
 	public ResponseEntity<HashMap<String, Object>> insertConsuntivo (@RequestBody Consuntivo con) {
 		con = conService.insertConsuntivo(con);
 		var insMap = serializer.serialize(format, con);

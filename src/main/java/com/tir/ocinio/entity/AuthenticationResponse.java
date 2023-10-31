@@ -5,6 +5,8 @@ public class AuthenticationResponse {
 	private String token;
 	
 	private String refreshToken;
+	
+	private Dipendente dipendente;
 
 
 	public String getToken() {
@@ -21,6 +23,14 @@ public class AuthenticationResponse {
 
 	public void setRefreshToken(String refreshToken) {
 		this.refreshToken = refreshToken;
+	}
+
+	public Dipendente getDipendente() {
+		return dipendente;
+	}
+
+	public void setDipendente(Dipendente dipendente) {
+		this.dipendente = dipendente;
 	}
 
 }

@@ -31,9 +31,10 @@ public class AuthController extends Controller {
 	}
 	
 	@PostMapping("/login")
-	private ResponseEntity<AuthenticationResponse> auth (@RequestBody Dipendente dip){
-		
-		return ResponseEntity.ok(auth.authenticate(dip));
+	private ResponseEntity<HashMap<String, Object>> auth (@RequestBody Dipendente dip) throws NonRegistratoException{
+		var autenticato = auth.authenticate(dip);
+		var regMap = serializer.serialize("{token,dipendente:{id,ruolo:{anzianita}}}", autenticato);
+		return ResponseEntity.ok(regMap);
 		
 	}
 	@PostMapping("/registrazione")

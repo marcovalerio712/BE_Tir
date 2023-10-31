@@ -1,5 +1,6 @@
 package com.tir.ocinio.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,10 +51,14 @@ public class ConsuntivoService {
 	}
 	
 	public Consuntivo insertConsuntivo(Consuntivo con) {
+		var dip = ((Dipendente)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		con.setDipendente(dip);
 		return conDao.insert(con);
 	}
 	
 	public Consuntivo updateConsuntivo(Consuntivo con) {
+	
+		
 		return conDao.update(con);
 	}
 	
@@ -66,6 +71,10 @@ public class ConsuntivoService {
 		var dip = ((Dipendente)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		
 		var consuntivi = ((ConsuntivoDAO)conDao).getByDipendente(dip.getId());
+		
+		for (Consuntivo consuntivo : consuntivi) {
+			consuntivo.setDipendente(dip);
+		}
 		
 		return consuntivi;
 	}
